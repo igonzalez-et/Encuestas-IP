@@ -34,6 +34,12 @@ body {
     background-color: #85C7F2;
     border: 0px;
     margin: auto;
+    transition: transform .5s;
+    font-size: 20px;
+}
+.botonLanding:hover{
+    transform: scale(1.1);
+    background: linear-gradient(90deg, #3f51b5, transparent) #2196f3
 }
 
 /*Body sin scroll*/
