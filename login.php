@@ -44,16 +44,19 @@
 
             if($row = $query->fetch()){
 
-                $query = $pdo->prepare("select email,pass,role from users where pass = sha1(:pass)");
+                $query = $pdo->prepare("select email,pass,role from users where email = :email and pass = sha1(:pass)");
             
                 $pass = $_POST['loginInputPass'];
+                $email = $_POST['loginInputEmail'];
 
                 $query->bindParam(':pass', $pass);
+                $query->bindParam(':email', $email);
 
                 $query->execute();
                 if($row = $query->fetch()){
-                    header('Location: http://localhost:8080/dashboard.php');
                     $_SESSION["user"] = ["user" => $row["email"], "role" => $row["role"]];
+                    header('Location: http://localhost:8080/dashboard.php');
+                    die();
                 }else{
                     echo "Usuari o contrasenya incorrect";
                 }
