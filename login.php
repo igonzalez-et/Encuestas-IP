@@ -20,18 +20,21 @@
     <link rel="stylesheet" href="./CSS/style.css">
     <title>Login</title>
 </head>
-<body class="login">
-    <div class="divInput">
+<body class="bodyLogin">
+    <?php include("./includes/header.php")?>
+    <div class="divLogin">
+        <h2>Benvingut</h2>
         <form action="login.php" method="post">
-            <label for="loginInputEmail">Email: </label><br>
+            <label for="loginInputEmail">EMAIL </label><br>
             <input type="email" name="loginInputEmail" id="loginInputEmail" required><br>
-            <label for="loginInputPass">Contrasenya: </label> <br>
+            <label for="loginInputPass">CONTRASENYA </label> <br>
             <input type="password" name="loginInputPass" id="loginInputPass" required><br>
-            <input type="submit" value="Log in">
+            <input type="submit" value="Log in" id="submit">
         </form>
         <a href="#">Has olvidat la teva contrasenya?</a>
     </div>
     <?php
+    
         if(isset($_POST["loginInputEmail"]) && isset($_POST["loginInputPass"])){
 
             $query = $pdo->prepare("select email,pass,role from users where email = :email");
@@ -67,7 +70,7 @@
 
         }
 
-        
     ?>
+    <?php include("./includes/footer.php")?>
 </body>
 </html>
