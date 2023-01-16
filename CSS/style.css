@@ -151,3 +151,138 @@ body {
     margin: auto;
     line-height : 150%;
 }
+
+/* Contenedor Lista Encuestas*/
+#contenedorListaEncuestas{
+    display: block;
+}
+
+#contenedorListaEncuestas table{
+    background-color: #636363;
+    color: whitesmoke;
+    width: 100%;
+}
+
+#contenedorListaEncuestas table th{
+    background-color: #4C4C4C;
+}
+
+#contenedorListaEncuestas table{
+    text-align: left;
+}
+
+/* Contenedor Lista Preguntas*/
+#contenedorListaPreguntas{
+    display: none;
+}
+
+#contenedorListaPreguntas table{
+    background-color: #636363;
+    color: whitesmoke;
+    width: 100%;
+}
+
+#contenedorListaPreguntas table th{
+    background-color: #4C4C4C;
+}
+
+#contenedorListaPreguntas table{
+    text-align: left;
+}
+
+/* Contenedor Crear Encuesta*/
+#contenedorCrearEncuesta{
+    display: none;
+}
+
+/* Contenedor Crear Pregunta */
+#contenedorCrearPregunta{
+    display: none;
+}
+
+#contenedorCrearPregunta table{
+    background-color: yellow;
+    color: whitesmoke;
+    width: 100%;
+}
+
+#contenedorCrearPregunta table th{
+    background-color: #4C4C4C;
+}
+
+#contenedorCrearPregunta table{
+    text-align: left;
+}
+
+/* Columnas Table*/
+.columnaID{
+    width: 10%;
+}
+.columnaNombre{
+    width: 60%;
+}
+.columnaFechaInicio{
+    width: 10%;
+    text-align: right;
+}
+.columnaFechaFinal{
+    width: 10%;
+    text-align: right;
+}
+.columnaTipo{
+    width: 20%;
+}
+
+/* Login Page */
+.bodyLogin .divLogin {
+    background-color: #636363;
+    padding: 20px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-radius: 10px;
+    width: 16%;
+    margin: 50px auto;
+}
+.bodyLogin .divLogin h2{
+    text-align: center;
+    color: #000000;
+}
+.bodyLogin form {
+    text-align: left;
+}
+
+.bodyLogin label {
+    color: #D1D1D1;
+    font-size: 18px;
+    display: block; /* el label es un bloque */
+    width: 100%; /* el ancho del label es igual al ancho del input */
+}
+
+.bodyLogin #loginInputEmail, #loginInputPass {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block; /* el input es un bloque */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.bodyLogin #submit {
+    width: 100%;
+    background-color: #85C7F2;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.bodyLogin a {
+    color: #D1D1D1;
+    text-decoration: none;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+}
