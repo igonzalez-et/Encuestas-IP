@@ -4,7 +4,7 @@
     try {
         $hostname = "localhost";
         $dbname = "enquestes_ip";
-        $username = "root";
+        $username = "enquestes_user";
         $pw = "P@ssw0rd";
         $pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
         } catch (PDOException $e) {

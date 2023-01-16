@@ -34,6 +34,42 @@ body {
     background-color: #85C7F2;
     border: 0px;
     margin: auto;
+    transition: width 2s, height 2s, transform .2s;
+    font-size: 20px;
+}
+.botonLanding:hover{
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(0deg, #3f51b5, transparent) #2196f3;
+    animation: background-animation;
+    animation-iteration-count: infinite;
+    animation-duration: 0.5s;
+    
+}
+
+@keyframes background-animation{
+    0%  {background: linear-gradient(18deg, #3f51b5, transparent) #2196f3;}
+    5%   {background: linear-gradient(36deg, #3f51b5, transparent) #2196f3;}
+    10%  {background: linear-gradient(54deg, #3f51b5, transparent) #2196f3;}
+    15%  {background: linear-gradient(72deg, #3f51b5, transparent) #2196f3;}
+    20%   {background: linear-gradient(90deg, #3f51b5, transparent) #2196f3;}
+    25%  {background: linear-gradient(108deg, #3f51b5, transparent) #2196f3;}
+    30%  {background: linear-gradient(126deg, #3f51b5, transparent) #2196f3;}
+    35% {background: linear-gradient(144deg, #3f51b5, transparent) #2196f3;}
+    40%   {background: linear-gradient(162deg, #3f51b5, transparent) #2196f3;}
+    45%  {background: linear-gradient(180deg, #3f51b5, transparent) #2196f3;}
+    50%  {background: linear-gradient(198deg, #3f51b5, transparent) #2196f3;}
+    55% {background: linear-gradient(216deg, #3f51b5, transparent) #2196f3;}
+    60%   {background: linear-gradient(234deg, #3f51b5, transparent) #2196f3;}
+    65%  {background: linear-gradient(252deg, #3f51b5, transparent) #2196f3;}
+    70%  {background: linear-gradient(270deg, #3f51b5, transparent) #2196f3;}
+    75% {background: linear-gradient(288deg, #3f51b5, transparent) #2196f3;}
+    80%   {background: linear-gradient(306deg, #3f51b5, transparent) #2196f3;}
+    85%  {background: linear-gradient(324deg, #3f51b5, transparent) #2196f3;}
+    90%  {background: linear-gradient(342deg, #3f51b5, transparent) #2196f3;}
+    95% {background: linear-gradient(360deg, #3f51b5, transparent) #2196f3;}
+    100% {background: linear-gradient(0deg, #3f51b5, transparent) #2196f3;}
+    
 }
 
 /*Body sin scroll*/
@@ -77,40 +113,79 @@ body {
     height:80%;
 }
 
+
+/*Administración Encuestas*/
+.contenedorPrincipalPoll{
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 5%;
+    text-align: center;
+    overflow-y:hidden;
+}
+
+.contenedorBotonesPoll{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 55%;
+}
+
+.botonPoll{  
+    width: 22.5%;
+    margin-top: 2%;
+    color: #636363;
+    background-color: #85C7F2;
+    transition: transform .2s;
+}
+.botonPoll:hover{
+    transform: scale(1.1);
+    color: black;
+}
+
+.imgBotonPoll{
+    width: 80%;
+    height: 80%;
+}
+.contenedorAccionBotones{
+    width: 80%;
+    margin: auto;
+    line-height : 150%;
+}
+
 /* Login Page */
-.divLogin {
+.bodyLogin .divLogin {
     background-color: #636363;
     padding: 20px;
     border-radius: 10px;
     width: 16%;
     margin: 50px auto;
 }
-.divLogin h2{
+.bodyLogin .divLogin h2{
     text-align: center;
     color: #000000;
 }
-form {
+.bodyLogin form {
     text-align: left;
 }
 
-label {
+.bodyLogin label {
     color: #D1D1D1;
     font-size: 18px;
-    display: block; /* el label es un bloque */
-    width: 100%; /* el ancho del label es igual al ancho del input */
+    display: block;
+    width: 100%;
 }
 
-#loginInputEmail, #loginInputPass {
+.bodyLogin #loginInputEmail, #loginInputPass {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
-    display: block; /* el input es un bloque */
+    display: block; 
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
-#submit {
+.bodyLogin #submit {
     width: 100%;
     background-color: #85C7F2;
     color: white;
@@ -121,7 +196,7 @@ label {
     cursor: pointer;
 }
 
-a {
+.bodyLogin a {
     color: #D1D1D1;
     text-decoration: none;
     margin-top: 10px;
