@@ -34,6 +34,42 @@ body {
     background-color: #85C7F2;
     border: 0px;
     margin: auto;
+    transition: width 2s, height 2s, transform .2s;
+    font-size: 20px;
+}
+.botonLanding:hover{
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(0deg, #3f51b5, transparent) #2196f3;
+    animation: background-animation;
+    animation-iteration-count: infinite;
+    animation-duration: 0.5s;
+    
+}
+
+@keyframes background-animation{
+    0%  {background: linear-gradient(18deg, #3f51b5, transparent) #2196f3;}
+    5%   {background: linear-gradient(36deg, #3f51b5, transparent) #2196f3;}
+    10%  {background: linear-gradient(54deg, #3f51b5, transparent) #2196f3;}
+    15%  {background: linear-gradient(72deg, #3f51b5, transparent) #2196f3;}
+    20%   {background: linear-gradient(90deg, #3f51b5, transparent) #2196f3;}
+    25%  {background: linear-gradient(108deg, #3f51b5, transparent) #2196f3;}
+    30%  {background: linear-gradient(126deg, #3f51b5, transparent) #2196f3;}
+    35% {background: linear-gradient(144deg, #3f51b5, transparent) #2196f3;}
+    40%   {background: linear-gradient(162deg, #3f51b5, transparent) #2196f3;}
+    45%  {background: linear-gradient(180deg, #3f51b5, transparent) #2196f3;}
+    50%  {background: linear-gradient(198deg, #3f51b5, transparent) #2196f3;}
+    55% {background: linear-gradient(216deg, #3f51b5, transparent) #2196f3;}
+    60%   {background: linear-gradient(234deg, #3f51b5, transparent) #2196f3;}
+    65%  {background: linear-gradient(252deg, #3f51b5, transparent) #2196f3;}
+    70%  {background: linear-gradient(270deg, #3f51b5, transparent) #2196f3;}
+    75% {background: linear-gradient(288deg, #3f51b5, transparent) #2196f3;}
+    80%   {background: linear-gradient(306deg, #3f51b5, transparent) #2196f3;}
+    85%  {background: linear-gradient(324deg, #3f51b5, transparent) #2196f3;}
+    90%  {background: linear-gradient(342deg, #3f51b5, transparent) #2196f3;}
+    95% {background: linear-gradient(360deg, #3f51b5, transparent) #2196f3;}
+    100% {background: linear-gradient(0deg, #3f51b5, transparent) #2196f3;}
+    
 }
 
 /*Body sin scroll*/

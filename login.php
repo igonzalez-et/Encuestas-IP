@@ -37,7 +37,7 @@
     
         if(isset($_POST["loginInputEmail"]) && isset($_POST["loginInputPass"])){
 
-            $query = $pdo->prepare("select email,pass,role from users where email = :email");
+            $query = $pdo->prepare("select email,password,role from usuarios where email = :email");
             
             $email = $_POST['loginInputEmail'];
 
@@ -47,7 +47,7 @@
 
             if($row = $query->fetch()){
 
-                $query = $pdo->prepare("select email,pass,role from users where email = :email and pass = sha1(:pass)");
+                $query = $pdo->prepare("select email,password,role from usuarios where email = :email and password = sha1(:pass)");
             
                 $pass = $_POST['loginInputPass'];
                 $email = $_POST['loginInputEmail'];

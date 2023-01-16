@@ -10,7 +10,8 @@
 <body>
     <?php include("./includes/header.php")?>
     <div class="contenedorPrincipal">
-        <button class="botonLanding">Login</button>
+        <h1>INICIAR SESIÓN ENCUESTAS</h1><br><br>
+        <button class="botonLanding" onclick="location.href='login.php'">Login</button>
     </div>
     <?php include("./includes/footer.php")?>
 </body>

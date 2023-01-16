@@ -13,8 +13,7 @@ session_start();
 </head>
 <body class="bodyDashboard">
     <?php include("./includes/header.php")?>
-    <?php 
-        //$_SESSION["user"] = ["user"=>"user","role"=>"admin"];
+    <?php
         $rolUsuario = $_SESSION['user']['role'];
         if($rolUsuario == "admin"){
             include("./includes/dashboardAdmin.php");
