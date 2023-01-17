@@ -9,11 +9,11 @@
     <script src="./JS/scripts.js"></script>
     <title>Index</title>
 </head>
-<body>
-    <?php include("./includes/header.php")?>
+<body class="bodyIndex">
+    <?php include("./includes/headerNoLogin.php")?>
     <div class="contenedorPrincipal">
-        <h1>INICIAR SESIÓN ENCUESTAS</h1><br><br>
-        <button class="botonLanding" onclick="location.href='login.php'">Login</button>
+        <h1>INICIAR SESSIÓ ENQUESTES</h1><br><br>
+        <button class="botonLanding" onclick="location.href='login.php'">INICIAR</button>
     </div>
     <?php include("./includes/footer.php")?>
 </body>

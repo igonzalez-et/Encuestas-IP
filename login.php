@@ -22,14 +22,14 @@
     <title>Login</title>
 </head>
 <body class="bodyLogin">
-    <?php include("./includes/header.php")?>
+    <?php include("./includes/headerNoLogin.php")?>
     <div class="divLogin">
         <form action="login.php" method="post">
             <label for="loginInputEmail">EMAIL </label><br>
             <input type="email" name="loginInputEmail" id="loginInputEmail" required><br>
             <label for="loginInputPass">CONTRASENYA </label> <br>
             <input type="password" name="loginInputPass" id="loginInputPass" required><br>
-            <input type="submit" value="Log in" id="submit">
+            <input type="submit" value="Iniciar sessió" id="submit">
         </form>
         <a href="#">Has oblidat la teva contrasenya?</a>
     </div>

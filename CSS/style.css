@@ -25,7 +25,24 @@ body {
     text-align: center;
 }
 
+.fixed-header button{
+    float: left;
+    
+}
+.fixed-header a{
+    text-decoration: none;
+    color: #ffff;
+}
+.fixed-header h1{
+    clear: both;
+}
+
+
+
 /*Landing Page*/
+.bodyIndex{
+    overflow-y: hidden;
+}
 .botonLanding{
     display: block;
     width: 350px;
@@ -234,6 +251,9 @@ body {
 }
 
 /* Login Page */
+.bodyLogin{
+    overflow-y:hidden;
+}
 .bodyLogin .divLogin {
     background-color: #636363;
     padding: 20px;
