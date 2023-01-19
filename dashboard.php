@@ -26,7 +26,6 @@ session_start();
         else{
             echo "<p>".$rolUsuario."</p>";
         }
-        
     ?>
     <?php include("./includes/footer.php")?>
 </body>

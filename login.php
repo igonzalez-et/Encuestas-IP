@@ -11,7 +11,8 @@
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
         exit;
         }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -23,7 +24,6 @@
 <body class="bodyLogin">
     <?php include("./includes/header.php")?>
     <div class="divLogin">
-        <h2>Benvingut</h2>
         <form action="login.php" method="post">
             <label for="loginInputEmail">EMAIL </label><br>
             <input type="email" name="loginInputEmail" id="loginInputEmail" required><br>
@@ -31,7 +31,7 @@
             <input type="password" name="loginInputPass" id="loginInputPass" required><br>
             <input type="submit" value="Log in" id="submit">
         </form>
-        <a href="#">Has olvidat la teva contrasenya?</a>
+        <a href="#">Has oblidat la teva contrasenya?</a>
     </div>
     <?php
     
@@ -61,11 +61,11 @@
                     header('Location: http://localhost:8080/dashboard.php');
                     die();
                 }else{
-                    echo "<p>Usuari o contrasenya incorrect</p>";
+                    echo "<div id='divErrores'><p>Usuari o contrasenya incorrect</p></div>";
                 }
                 
             }else{
-                echo "<p>Usuari no registrat</p>";
+                echo "<div id='divErrores'><p>Usuari no registrat</p></div>";
             }
 
         }
