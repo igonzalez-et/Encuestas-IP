@@ -203,3 +203,9 @@ body {
     display: block;
     text-align: center;
 }
+
+.bodyLogin p{
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
