@@ -24,6 +24,21 @@ $(".botonPoll").click(function(){
         $("#contenedorCrearPregunta").css("display","none");
         $("#contenedorListaEncuestas").css("display","block");
     }
+    else if($(this).attr('id')=="botonCrearEncuesta"){
+        $("#contenedorListaPreguntas").hidden();
+        $("#contenedorListaEncuestas").hidden();
+        $("#contenedorCrearPregunta").show();
+    }
+    else if($(this).attr('id')=="botonListarPreguntas"){
+        $("#contenedorCrearPregunta").hidden();
+        $("#contenedorListaEncuestas").hidden();
+        $("#contenedorListaPreguntas").show();
+    }
+    else if($(this).attr('id')=="botonListarEncuestas"){
+        $("#contenedorListaPreguntas").hidden();
+        $("#contenedorCrearPregunta").hidden();
+        $("#contenedorListaEncuestas").show();
+    }
     
 });
 

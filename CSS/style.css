@@ -163,7 +163,7 @@ body {
     width: 80%;
     height: 80%;
 }
- .contenedorAccionBotones{
+.contenedorAccionBotones{
     width: 80%;
     margin: auto;
     line-height : 150%;
@@ -305,4 +305,10 @@ body {
     margin-top: 10px;
     display: block;
     text-align: center;
+}
+
+.bodyLogin p{
+    text-align: center;
+    color: red;
+    font-weight: bold;
 }

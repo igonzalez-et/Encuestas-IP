@@ -61,11 +61,11 @@
                     header('Location: http://localhost:8080/dashboard.php');
                     die();
                 }else{
-                    echo "Usuari o contrasenya incorrect";
+                    echo "<p>Usuari o contrasenya incorrect</p>";
                 }
                 
             }else{
-                echo "Usuari no registrat";
+                echo "<p>Usuari no registrat</p>";
             }
 
         }

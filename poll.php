@@ -22,7 +22,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <title>Enquestes</title>
 </head>
-<body>
+<body class="bodyPoll">
     <?php include("./includes/header.php")?>
     <div class="contenedorPrincipalPoll">
         <h1>Dashboard Admin / Enquestes</h1>
