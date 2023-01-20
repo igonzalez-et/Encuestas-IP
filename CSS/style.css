@@ -27,7 +27,7 @@ body {
 
 .fixed-header button{
     float: left;
-    
+    clear: both;
 }
 .fixed-header a{
     text-decoration: none;
@@ -37,7 +37,84 @@ body {
     clear: both;
 }
 
+/* Logout Button */
+.logoutButton{
+    width: 5%;
+    background-color: #85C7F2;
+    color: #636363;
+    padding: 14px 20px;
+    margin-left: 1%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.logoutButton:hover{
+    transform: scale(1.1);
+    color: black;
+}
 
+/* Login Page */
+.bodyLogin{
+    overflow-y:hidden;
+}
+.bodyLogin .divLogin {
+    background-color: #636363;
+    padding: 20px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-radius: 10px;
+    width: 16%;
+    margin: 50px auto;
+}
+.bodyLogin .divLogin h2{
+    text-align: center;
+    color: #000000;
+}
+.bodyLogin form {
+    text-align: left;
+}
+
+.bodyLogin label {
+    color: #D1D1D1;
+    font-size: 18px;
+    display: block; /* el label es un bloque */
+    width: 100%; /* el ancho del label es igual al ancho del input */
+}
+
+.bodyLogin #loginInputEmail, #loginInputPass {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block; /* el input es un bloque */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.bodyLogin #submit {
+    width: 100%;
+    background-color: #85C7F2;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.bodyLogin a {
+    color: #D1D1D1;
+    text-decoration: none;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+}
+
+.bodyLogin p{
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
 
 /*Landing Page*/
 .bodyIndex{
@@ -250,65 +327,41 @@ body {
     width: 20%;
 }
 
-/* Login Page */
-.bodyLogin{
-    overflow-y:hidden;
-}
-.bodyLogin .divLogin {
-    background-color: #636363;
-    padding: 20px;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    border-radius: 10px;
-    width: 16%;
-    margin: 50px auto;
-}
-.bodyLogin .divLogin h2{
-    text-align: center;
-    color: #000000;
-}
-.bodyLogin form {
-    text-align: left;
-}
 
-.bodyLogin label {
-    color: #D1D1D1;
-    font-size: 18px;
-    display: block; /* el label es un bloque */
-    width: 100%; /* el ancho del label es igual al ancho del input */
-}
-
-.bodyLogin #loginInputEmail, #loginInputPass {
+/* Message Css */
+#messagesCSS {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: block; /* el input es un bloque */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+
 }
 
-.bodyLogin #submit {
-    width: 100%;
-    background-color: #85C7F2;
+  
+.success-styling {
+    background-color: green;
     color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.bodyLogin a {
-    color: #D1D1D1;
-    text-decoration: none;
-    margin-top: 10px;
-    display: block;
+.error-styling {
+    background-color: red;
+    color: white;
+    padding: 10px;
     text-align: center;
+    margin-bottom: 10px;
 }
 
-.bodyLogin p{
-    text-align: center;
-    color: red;
+.closebtn {
+    margin-left: 15px;
+    color: white;
     font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+  
+.closebtn:hover {
+    color: black;
 }

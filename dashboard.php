@@ -15,6 +15,7 @@ session_start();
 </head>
 <body class="bodyDashboard">
     <?php include("./includes/header.php")?>
+    <?php include("./includes/messageCSS.php")?>
     <?php
         $rolUsuario = $_SESSION['user']['role'];
         if($rolUsuario == "admin"){
