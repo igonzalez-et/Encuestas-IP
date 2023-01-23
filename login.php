@@ -32,15 +32,15 @@
         //$_SESSION["arrayMensajesCSS"] = array();
         if(!isset($_SESSION["arrayMensajesCSS"])){
             $_SESSION["arrayMensajesCSS"] = array();
+            echo "<script type='text/javascript'>eliminarScrollBody('.bodyLogin')</script>";
+
         }
         else{
             for ($i=0; $i < count($_SESSION["arrayMensajesCSS"]); $i++) { 
-                for ($j=0; $j < count($_SESSION["arrayMensajesCSS"][$i]); $j++) { 
-                    echo "<script type='text/javascript'>mostrarMensajeCSS('".$_SESSION["arrayMensajesCSS"][$i][0]."','".$_SESSION["arrayMensajesCSS"][$i][1]."')</script>";
-                }
-                
+                echo "<script type='text/javascript'>mostrarMensajeCSS('".$_SESSION["arrayMensajesCSS"][$i][0]."','".$_SESSION["arrayMensajesCSS"][$i][1]."')</script>";
+
             }
-            unset($_SESSION["arrayMensajesCSS"]);
+            //$_SESSION["arrayMensajesCSS"] = array();
         }
         
     ?>
@@ -65,7 +65,7 @@
             $query->bindParam(':email', $email);
 
             $query->execute();
-
+            
             if($row = $query->fetch()){
 
                 $query = $pdo->prepare("select email,password,role from usuarios where email = :email and password = sha1(:pass)");
@@ -80,8 +80,8 @@
                 if($row = $query->fetch()){
                     $_SESSION["user"] = ["user" => $row["email"], "role" => $row["role"]];
 
-                    $tipo = "correcto";
-                    $mensajeCSS = "Se ha iniciado correctamente";
+                    $tipo = "info";
+                    $mensajeCSS = "Has iniciat sessió";
                     array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
 
                     echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
@@ -98,6 +98,7 @@
                 $mensajeCSS = "Usuari o contrasenya incorrecte";
                 array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
                 echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
+                
             }
 
         }

@@ -24,6 +24,23 @@
 </head>
 <body class="bodyPoll">
     <?php include("./includes/header.php")?>
+    <br>
+    <?php include("./includes/messageCSS.php")?>
+
+    <?php
+        //$_SESSION["arrayMensajesCSS"] = array();
+        if(!isset($_SESSION["arrayMensajesCSS"])){
+            $_SESSION["arrayMensajesCSS"] = array();
+        }
+        else{
+            for ($i=0; $i < count($_SESSION["arrayMensajesCSS"]); $i++) { 
+                echo "<script type='text/javascript'>mostrarMensajeCSS('".$_SESSION["arrayMensajesCSS"][$i][0]."','".$_SESSION["arrayMensajesCSS"][$i][1]."')</script>";
+
+            }
+            //$_SESSION["arrayMensajesCSS"] = array();
+        }
+    ?>
+
     <div class="contenedorPrincipalPoll">
         <h1>Dashboard Admin / Enquestes</h1>
         <div class="contenedorBotonesPoll">
@@ -50,7 +67,7 @@
 
             <!-- Contenedor Crear Pregunta -->
             <div id="contenedorCrearPregunta">
-                <form method='post'>
+                <!-- <form method='post'>
                     <label for='inpNombrePregunta'>Nombre de Pregunta</label>&nbsp;&nbsp;
                     <input type='text' id='inpNombrePregunta' name='inpNombrePregunta'><br>
                     <label for='tipoPregunta'>Tipo de pregunta:</label>&nbsp;&nbsp;
@@ -61,7 +78,7 @@
                     </select><br>
                     <input type='submit' name="guardarPregunta" value='Guardar'>
                     <input type='reset' value='Cancelar'>
-                </form>
+                </form> -->
                 <?php 
                     $userMail = $_SESSION["user"]["email"];
                     

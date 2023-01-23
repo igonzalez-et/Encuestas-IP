@@ -290,9 +290,9 @@ body {
 }
 
 /* Contenedor Crear Pregunta */
-#contenedorCrearPregunta{
-    display: none;
-}
+/* #contenedorCrearPregunta{
+    display: block;
+} */
 
 #contenedorCrearPregunta table{
     background-color: yellow;
@@ -333,7 +333,6 @@ body {
     width: 100%;
 
 }
-
   
 .success-styling {
     background-color: green;
@@ -345,6 +344,22 @@ body {
 
 .error-styling {
     background-color: red;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.info-styling {
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.warning-styling {
+    background-color: orange;
     color: white;
     padding: 10px;
     text-align: center;
