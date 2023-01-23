@@ -58,7 +58,7 @@
                 $query->execute();
                 if($row = $query->fetch()){
                     $_SESSION["user"] = ["user" => $row["email"], "role" => $row["role"]];
-                    header('Location: http://localhost:8080/dashboard.php');
+                    header('Location: ./dashboard.php');
                     die();
                 }else{
                     echo "<div id='divErrores'><p>Usuari o contrasenya incorrect</p></div>";
