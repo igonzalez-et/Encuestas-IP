@@ -1,0 +1,4 @@
+[S] - [16:54:15] - [Successful connection to the database]
+[S] - [16:59:19] - [Successful connection to the database]
+[S] - [16:59:24] - [User  has successfully logout]
+[S] - [16:59:24] - [Successful connection to the database]
