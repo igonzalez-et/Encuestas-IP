@@ -1,5 +1,5 @@
 <?php session_start(); ?>
 <div class="fixed-header">
-    <a href="http://localhost:8080/login.php">Tancar sessió</a>
+    <a href="../loginDestroy.php"><button class="logoutButton">Tancar sessió</button></a>
     <h1><a href="./dashboard.php">ENCUESTAS-IP</a></h1>
 </div>

@@ -1,1 +1,0 @@
-S - 16:24:28 - Successful connection to the database

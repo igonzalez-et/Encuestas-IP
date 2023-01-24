@@ -27,7 +27,7 @@ body {
 
 .fixed-header button{
     float: left;
-    
+    clear: both;
 }
 .fixed-header a{
     text-decoration: none;
@@ -37,57 +37,142 @@ body {
     clear: both;
 }
 
+/* Logout Button */
+.logoutButton{
+    width: 5%;
+    background-color: #85C7F2;
+    color: #636363;
+    padding: 14px 20px;
+    margin-left: 1%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.logoutButton:hover{
+    transform: scale(1.1);
+    color: black;
+}
 
+/* Login Page */
+.bodyLogin{
+    overflow-y:hidden;
+}
+.bodyLogin .divLogin {
+    background-color: #636363;
+    padding: 20px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-radius: 10px;
+    width: 16%;
+    margin: 50px auto;
+}
+.bodyLogin .divLogin h2{
+    text-align: center;
+    color: #000000;
+}
+.bodyLogin form {
+    text-align: left;
+}
+
+.bodyLogin label {
+    color: #D1D1D1;
+    font-size: 18px;
+    display: block; /* el label es un bloque */
+    width: 100%; /* el ancho del label es igual al ancho del input */
+}
+
+.bodyLogin #loginInputEmail, #loginInputPass {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block; /* el input es un bloque */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.bodyLogin #submit {
+    width: 100%;
+    background-color: #85C7F2;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.bodyLogin a {
+    color: #D1D1D1;
+    text-decoration: none;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+}
+
+.bodyLogin p{
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
 
 /*Landing Page*/
 .bodyIndex{
     overflow-y: hidden;
 }
-.botonLanding{
-    display: block;
-    width: 350px;
-    height: 350px;
-    border-radius: 50%;
-    background-color: #85C7F2;
-    border: 0px;
-    margin: auto;
-    transition: width 2s, height 2s, transform .2s;
-    font-size: 20px;
+
+.contenedorPrincipal{
+    overflow-x: hidden;
 }
-.botonLanding:hover{
-    width: 500px;
-    height: 500px;
-    background: linear-gradient(0deg, #3f51b5, transparent) #2196f3;
-    animation: background-animation;
-    animation-iteration-count: infinite;
-    animation-duration: 0.5s;
+
+.contenedorLanding{
+    margin-top: 3%;
+    height: 100%;
+}
+
+.headerContenedor{
+    width: 100%;
+    border-bottom-left-radius: 95%;
+    border-bottom-right-radius: 95%;
     
 }
 
-@keyframes background-animation{
-    0%  {background: linear-gradient(18deg, #3f51b5, transparent) #2196f3;}
-    5%   {background: linear-gradient(36deg, #3f51b5, transparent) #2196f3;}
-    10%  {background: linear-gradient(54deg, #3f51b5, transparent) #2196f3;}
-    15%  {background: linear-gradient(72deg, #3f51b5, transparent) #2196f3;}
-    20%   {background: linear-gradient(90deg, #3f51b5, transparent) #2196f3;}
-    25%  {background: linear-gradient(108deg, #3f51b5, transparent) #2196f3;}
-    30%  {background: linear-gradient(126deg, #3f51b5, transparent) #2196f3;}
-    35% {background: linear-gradient(144deg, #3f51b5, transparent) #2196f3;}
-    40%   {background: linear-gradient(162deg, #3f51b5, transparent) #2196f3;}
-    45%  {background: linear-gradient(180deg, #3f51b5, transparent) #2196f3;}
-    50%  {background: linear-gradient(198deg, #3f51b5, transparent) #2196f3;}
-    55% {background: linear-gradient(216deg, #3f51b5, transparent) #2196f3;}
-    60%   {background: linear-gradient(234deg, #3f51b5, transparent) #2196f3;}
-    65%  {background: linear-gradient(252deg, #3f51b5, transparent) #2196f3;}
-    70%  {background: linear-gradient(270deg, #3f51b5, transparent) #2196f3;}
-    75% {background: linear-gradient(288deg, #3f51b5, transparent) #2196f3;}
-    80%   {background: linear-gradient(306deg, #3f51b5, transparent) #2196f3;}
-    85%  {background: linear-gradient(324deg, #3f51b5, transparent) #2196f3;}
-    90%  {background: linear-gradient(342deg, #3f51b5, transparent) #2196f3;}
-    95% {background: linear-gradient(360deg, #3f51b5, transparent) #2196f3;}
-    100% {background: linear-gradient(0deg, #3f51b5, transparent) #2196f3;}
-    
+.bienvenidoLanding{
+    width: 80%;
+    height: 50%;
+    margin: auto;
+    background-color: #2196f3;
+    margin-top: 3%;
+    margin-bottom: 25%;
+    border: 3px solid black;
+    box-shadow: 5px 5px 3px black;
+
 }
+
+.bienvenidoLanding h2{
+    margin-top: 10%;
+}
+
+.bienvenidoLanding a{
+    text-decoration: none;
+}
+
+.botonLanding{
+    display: block;
+    width: 30%;
+    height: auto;
+    border-radius: 5%;
+    background-color: #85C7F2;
+    border: 3px solid black;
+    margin: auto;
+    font-size: 20px;
+}
+.botonLanding:hover{
+    transform: scale(1.02);
+    background-color: #3f51b5;
+    color: white;
+}
+
 
 /*Body sin scroll*/
 .bodyDashboard{
@@ -109,9 +194,7 @@ body {
     height: 62%;
 }
 
-.botonDashboard{
-    border: solid;
-    text-decoration: none;
+.botonDashboard{  
     width: 30%;
     margin-top: 2%;
     color: #636363;
@@ -215,22 +298,77 @@ body {
 }
 
 /* Contenedor Crear Pregunta */
-#contenedorCrearPregunta{
+
+#contenedorCrearPregunta {
     display: none;
+    background-color: #2196f3;
+    padding: 15px;
+    width: 100%;
+    border-radius: 5px;
 }
 
-#contenedorCrearPregunta table{
-    background-color: yellow;
-    color: whitesmoke;
+#contenedorFormulario {
+    background-color: #85C7F2;
+    border-radius: 20px;
+    padding: 25px;
+
+}
+
+#idFormPregunta{
     width: 100%;
 }
 
-#contenedorCrearPregunta table th{
-    background-color: #4C4C4C;
+
+#idFormPregunta label{
+    font-size: 20px;
+}
+#tipoPregunta{
+    background-color: #2196f3;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 20%;
+    height: 30px;
+    font-size: 15px;
+}
+#tipoPregunta:focus{
+    transform: scale(1.03);
+    outline: none;
+    background-color: rgba(33, 150, 243, 0.5);
 }
 
-#contenedorCrearPregunta table{
-    text-align: left;
+#inpNombrePreguntaLabel{
+    margin-left: 5%;
+}
+#inpNombrePregunta{
+    background-color: #2196f3;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 20%;
+    height: 30px;
+    font-size: 15px;
+}
+#inpNombrePregunta:focus{
+    transform: scale(1.03);
+    outline: none;
+    background-color: rgba(33, 150, 243, 0.5);
+}
+
+
+#borrarPregunta{
+    width: 10%;
+    background-color: lightgray;
+    color: black;
+    padding: 14px 20px;
+    margin-left: 1%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid black;
+    margin-top: 5%;
+}
+#borrarPregunta:hover{
+    transform: scale(1.1);
+    background-color: rgba(33, 150, 243, 0.5);
 }
 
 /* Columnas Table*/
@@ -252,65 +390,56 @@ body {
     width: 20%;
 }
 
-/* Login Page */
-.bodyLogin{
-    overflow-y:hidden;
-}
-.bodyLogin .divLogin {
-    background-color: #636363;
-    padding: 20px;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    border-radius: 10px;
-    width: 16%;
-    margin: 50px auto;
-}
-.bodyLogin .divLogin h2{
-    text-align: center;
-    color: #000000;
-}
-.bodyLogin form {
-    text-align: left;
-}
 
-.bodyLogin label {
-    color: #D1D1D1;
-    font-size: 18px;
-    display: block; /* el label es un bloque */
-    width: 100%; /* el ancho del label es igual al ancho del input */
-}
-
-.bodyLogin #loginInputEmail, #loginInputPass {
+/* Message Css */
+#messagesCSS {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: block; /* el input es un bloque */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
 
-.bodyLogin #submit {
-    width: 100%;
-    background-color: #85C7F2;
+}
+  
+.success-styling {
+    background-color: green;
     color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.bodyLogin a {
-    color: #D1D1D1;
-    text-decoration: none;
-    margin-top: 10px;
-    display: block;
+.error-styling {
+    background-color: red;
+    color: white;
+    padding: 10px;
     text-align: center;
+    margin-bottom: 10px;
 }
 
-.bodyLogin p{
+.info-styling {
+    background-color: blue;
+    color: white;
+    padding: 10px;
     text-align: center;
-    color: red;
+    margin-bottom: 10px;
+}
+
+.warning-styling {
+    background-color: orange;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
     font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+  
+.closebtn:hover {
+    color: black;
 }
