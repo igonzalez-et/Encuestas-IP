@@ -109,7 +109,9 @@ body {
     height: 62%;
 }
 
-.botonDashboard{  
+.botonDashboard{
+    border: solid;
+    text-decoration: none;
     width: 30%;
     margin-top: 2%;
     color: #636363;
