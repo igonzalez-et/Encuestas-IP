@@ -20,24 +20,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/style.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src='./JS/scripts.js'></script>
     <title>Enquestes</title>
 </head>
 <body class="bodyPoll">
     <?php include("./includes/header.php")?>
     <br>
     <?php include("./includes/messageCSS.php")?>
-
+        
     <?php
+        $tipo = "info";
+        $mensajeCSS = "Has entrat a l\'administració d\'enquestes";
+        array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
+        
         //$_SESSION["arrayMensajesCSS"] = array();
         if(!isset($_SESSION["arrayMensajesCSS"])){
             $_SESSION["arrayMensajesCSS"] = array();
+            
         }
         else{
             for ($i=0; $i < count($_SESSION["arrayMensajesCSS"]); $i++) { 
                 echo "<script type='text/javascript'>mostrarMensajeCSS('".$_SESSION["arrayMensajesCSS"][$i][0]."','".$_SESSION["arrayMensajesCSS"][$i][1]."')</script>";
 
             }
-            //$_SESSION["arrayMensajesCSS"] = array();
+            $_SESSION["arrayMensajesCSS"] = array();
         }
     ?>
 
@@ -71,10 +77,16 @@
                     $userMail = $_SESSION["user"]["email"];
                     
                     if(isset($_POST["guardarPregunta"])){
+                        $tipo = "correcto";
+                        $mensajeCSS = "Has desat correctament la pregunta";
+                        array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
+                        
                         $questionName = $_POST["inpNombrePregunta"];
                         $questionType = strtolower($_POST["tipoPregunta"]);
                         $query = $pdo->prepare("insert into preguntas(texto,id_tipo_pregunta) select '".$questionName."' as texto, id as id_tipo_pregunta from tipos_preguntas where tipo = '".$questionType."';");
                         $query->execute();
+
+                        
 
                     }
                 ?>

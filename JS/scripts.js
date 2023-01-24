@@ -72,12 +72,12 @@ $(".botonPoll").click(function(){
 function crearFormularioDinamico(){
     crearDiv("#contenedorCrearPregunta","contenedorFormulario");
     crearFormulario("#contenedorFormulario","idFormPregunta")
-    crearSelectForm("Tipo de pregunta:","tipoPregunta","tipoPregunta","#idFormPregunta");
+    crearSelectForm("Tipus de pregunta:","tipoPregunta","tipoPregunta","#idFormPregunta");
     crearOptionSelect("Tipus de pregunta","#tipoPregunta",true);
     crearOptionSelect("text","#tipoPregunta");
     crearOptionSelect("numeric","#tipoPregunta");
     crearOptionSelect("simple","#tipoPregunta");
-    crearLabelAndInput("Nombre de Pregunta","text","inpNombrePregunta","inpNombrePregunta","#idFormPregunta");
+    crearLabelAndInput("Nom de Pregunta","text","inpNombrePregunta","inpNombrePregunta","#idFormPregunta");
     crearInput("reset","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
 
     $("#tipoPregunta").on('change', function() {
@@ -97,9 +97,17 @@ function crearFormularioDinamico(){
                 if($("#inpNombrePregunta").val() == ""){
                     $("#guardarPregunta").remove();
                 }
-                crearInput("reset","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+                crearInput("button","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+                $("#borrarPregunta").click(function(){
+                    $("#contenedorFormulario").remove();
+                    crearFormularioDinamico();
+                });
             });
-            crearInput("reset","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+            crearInput("button","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+            $("#borrarPregunta").click(function(){
+                $("#contenedorFormulario").remove();
+                crearFormularioDinamico();
+            });
         }
 
         //Si la opción del desplegable es 'numeric'
@@ -117,9 +125,17 @@ function crearFormularioDinamico(){
                 if($("#inpNombrePregunta").val() == ""){
                     $("#guardarPregunta").remove();
                 }
-                crearInput("reset","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+                crearInput("button","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+                $("#borrarPregunta").click(function(){
+                    $("#contenedorFormulario").remove();
+                    crearFormularioDinamico();
+                });
             });
-            crearInput("reset","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+            crearInput("button","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+            $("#borrarPregunta").click(function(){
+                $("#contenedorFormulario").remove();
+                crearFormularioDinamico();
+            });
         }
 
         //Si la opción del desplegable es 'simple'
@@ -189,17 +205,21 @@ function crearFormularioDinamico(){
                 if($("#inpNombrePregunta").val() == ""){
                     $("#guardarPregunta").remove();
                 }
-                crearInput("reset","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+                crearInput("button","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+                $("#borrarPregunta").click(function(){
+                    $("#contenedorFormulario").remove();
+                    crearFormularioDinamico();
+                });
             });
-            crearInput("reset","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+            crearInput("button","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+            $("#borrarPregunta").click(function(){
+                $("#contenedorFormulario").remove();
+                crearFormularioDinamico();
+            });
         }
 
-        //Si la opción del desplegable es '--'
-        else{
-            $("#contenedorFormulario").remove();
-            crearFormularioDinamico();
-        }
     });
+    
 
 }
 
@@ -267,6 +287,6 @@ function eliminarHijos(padre){
 }
 
 function eliminarScrollBody(body){
-    $(body).css("overflow-y","scroll");
+    $(body).css("overflow-y","hidden");
 }
 

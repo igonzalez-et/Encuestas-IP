@@ -54,9 +54,9 @@ body {
 }
 
 /* Login Page */
-.bodyLogin{
+/* .bodyLogin{
     overflow-y:hidden;
-}
+} */
 .bodyLogin .divLogin {
     background-color: #636363;
     padding: 20px;
@@ -117,9 +117,9 @@ body {
 }
 
 /*Landing Page*/
-.bodyIndex{
+/* .bodyIndex{
     overflow-y: hidden;
-}
+} */
 
 .contenedorPrincipal{
     overflow-x: hidden;
@@ -175,9 +175,9 @@ body {
 
 
 /*Body sin scroll*/
-.bodyDashboard{
+/* .bodyDashboard{
     overflow-y:hidden;
-}
+} */
 
 /*Dashboard*/
 .contenedorPrincipal{
@@ -318,7 +318,6 @@ body {
     width: 100%;
 }
 
-
 #idFormPregunta label{
     font-size: 20px;
 }
@@ -345,7 +344,7 @@ body {
     border-radius: 5px;
     width: 20%;
     height: 30px;
-    font-size: 15px;
+    font-size: 17px;
 }
 #inpNombrePregunta:focus{
     transform: scale(1.03);
@@ -368,8 +367,81 @@ body {
 }
 #borrarPregunta:hover{
     transform: scale(1.1);
+    color: white;
+    background-color: #636363;
+}
+
+#idAñadirInput{
+    width: 10%;
+    background-color: lightgray;
+    color: black;
+    padding: 14px 20px;
+    margin-left: 1%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid black;
+    margin-top: 5%;
+}
+#idAñadirInput:hover{
+    transform: scale(1.1);
+    background-color: rgb(227, 227, 0);
+}
+
+#guardarPregunta{
+    width: 10%;
+    background-color: lightgray;
+    color: black;
+    padding: 14px 20px;
+    margin-left: 1%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid black;
+    margin-top: 5%;
+}
+#guardarPregunta:hover{
+    transform: scale(1.1);
+    background-color: rgb(0, 163, 3);
+}
+
+/* Contenedor Dinámico */
+#contenedorDinamico{
+    margin-top: 3%;
+}
+
+#contenedorDinamico input[type="text"]{
+    background-color: #2196f3;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 50%;
+    height: 30px;
+    font-size: 17px;
+    margin-left: 1%;
+    margin-bottom: 1%;
+}
+
+#contenedorDinamico input[type="text"]:focus{
+    transform: scale(1.03);
+    outline: none;
     background-color: rgba(33, 150, 243, 0.5);
 }
+
+#contenedorDinamico .botonEliminarInput{
+    background-color: lightgray;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 8%;
+    height: 30px;
+    font-size: 17px;
+    margin-left: 1%;
+}
+#contenedorDinamico .botonEliminarInput:hover{
+    transform: scale(1.1);
+    background-color: rgb(227, 0, 0);
+    color: white;
+}
+
 
 /* Columnas Table*/
 .columnaID{

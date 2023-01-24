@@ -38,6 +38,7 @@ session_start();
         $rolUsuario = $_SESSION['user']['role'];
         if($rolUsuario == "admin"){
             include("./includes/dashboardAdmin.php");
+            
         }
         else if($rolUsuario == "profesor"){
             include("./includes/dashboardProfessors.php");

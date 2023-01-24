@@ -40,7 +40,7 @@
                 echo "<script type='text/javascript'>mostrarMensajeCSS('".$_SESSION["arrayMensajesCSS"][$i][0]."','".$_SESSION["arrayMensajesCSS"][$i][1]."')</script>";
 
             }
-            //$_SESSION["arrayMensajesCSS"] = array();
+            $_SESSION["arrayMensajesCSS"] = array();
         }
         
     ?>
