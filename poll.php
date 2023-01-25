@@ -116,7 +116,7 @@
                         $query = $pdo->prepare("select * from encuestas");
             
                         $query->execute();
-                        //appendLog("S", "Query executed successfully - '" . $query . "'");
+                       
                    
                         
 
@@ -128,6 +128,7 @@
                                 <td class='columnaFechaFinal'>". $row['fecha_final'] ."</td>\n
                             </tr>";
                         }
+                        appendLog("S", "Query executed successfully - '" . $query . "'");
                     ?>
                 </table>
             </div>
