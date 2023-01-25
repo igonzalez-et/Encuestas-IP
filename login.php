@@ -89,6 +89,7 @@
                     array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
 
                     echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
+                    appendLog("S", "The user successfully connected " . $_POST["user"] . " and the password ".$password);
                     header('Location: ./dashboard.php');
                     die();
                 }else{
@@ -96,12 +97,14 @@
                     $mensajeCSS = "Usuari o contrasenya incorrecte";
                     array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
                     echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
+                    appendLog("W", "The user tried to connect" . $_POST["user"] . " and the password ".$password);
                 }
             }else{
                 $tipo = "error";
                 $mensajeCSS = "Usuari o contrasenya incorrecte";
                 array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
                 echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
+                appendLog("W", "The user tried to connect" . $_POST["user"] . " and the password ".$password);
                 
             }
 
