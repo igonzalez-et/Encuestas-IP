@@ -87,7 +87,7 @@
                     array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
 
                     echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
-                    header('Location: https://oscarweb.tk/dashboard.php');
+                    header('Location: ./dashboard.php');
                     die();
                 }else{
                     $tipo = "error";

@@ -18,7 +18,7 @@
             </div>
             <div class="bienvenidoLanding">
                 <h2>Benvingut a la nostra pàgina d'enquestes</h2>
-                <a href="https://oscarweb.tk/login.php"><button class="botonLanding">INICIAR</button></a>
+                <a href="./login.php"><button class="botonLanding">INICIAR</button></a>
             </div>
         </div>
         
