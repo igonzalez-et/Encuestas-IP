@@ -91,7 +91,7 @@
                         $questionType = strtolower($_POST["tipoPregunta"]);
                         $query = $pdo->prepare("insert into preguntas(texto,id_tipo_pregunta) select '".$questionName."' as texto, id as id_tipo_pregunta from tipos_preguntas where tipo = '".$questionType."';");
                         $query->execute();
-                        appendLog("S", "Query executed successfully, question name: (" . $questionName . "), type: ".$questionType ."--".$query);
+                        //appendLog("S", "Query executed successfully, question name: (" . $questionName . "), type: ".$questionType ."--".$query);
                         
                     }
                 ?>
@@ -116,7 +116,7 @@
                         $query = $pdo->prepare("select * from encuestas");
             
                         $query->execute();
-                        appendLog("S", "Query executed successfully - '" . $query . "'");
+                        //appendLog("S", "Query executed successfully - '" . $query . "'");
                    
                         
 
@@ -145,7 +145,7 @@
                         $query = $pdo->prepare("select p.id as id,p.texto as texto,CONCAT(UPPER(SUBSTRING(t.tipo,1,1)),SUBSTRING(t.tipo,2,LENGTH(t.tipo))) AS tipo from preguntas p inner join tipos_preguntas t on p.id_tipo_pregunta = t.id order by id;");
             
                         $query->execute();                    
-                        appendLog("S", "Query executed successfully - '" . $query . "'");
+                        //appendLog("S", "Query executed successfully - '" . $query . "'");
                    
                     
                         
