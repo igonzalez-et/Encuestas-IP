@@ -4,7 +4,7 @@
     include "./includes/log.php";
    
     try {
-        $hostname = "oscarweb.tk";
+        $hostname = "localhost";
         $dbname = "enquestes_ip";
         $username = "enquestes_user";
         $pw = "P@ssw0rd";
