@@ -79,7 +79,6 @@
             <!-- Contenedor Crear Pregunta -->
             <div id="contenedorCrearPregunta">
                 <?php 
-                try {
                     $userMail = $_SESSION["user"]["email"];
                     
                     if(isset($_POST["guardarPregunta"])){
@@ -92,12 +91,9 @@
                         $questionType = strtolower($_POST["tipoPregunta"]);
                         $query = $pdo->prepare("insert into preguntas(texto,id_tipo_pregunta) select '".$questionName."' as texto, id as id_tipo_pregunta from tipos_preguntas where tipo = '".$questionType."';");
                         $query->execute();
-                        appendLog("S", "Query executed successfully, question name: (" . $questionName . "), type: ".$questionType ."--".$query);
+                        //appendLog("S", "Query executed successfully, question name: (" . $questionName . "), type: ".$questionType ."--".$query);
                         
                     }
-                } catch (PDOException $e) {
-                    appendLog("E", "Failed to execute the query". $e->getMessage());
-                }
                     
                 ?>
             </div>
