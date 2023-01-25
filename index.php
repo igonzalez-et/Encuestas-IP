@@ -9,11 +9,19 @@
     <script src="./JS/scripts.js"></script>
     <title>Index</title>
 </head>
-<body>
-    <?php include("./includes/header.php")?>
+<body class="bodyIndex">
+    <?php include("./includes/headerNoLogin.php")?>
     <div class="contenedorPrincipal">
-        <h1>INICIAR SESIÓN ENCUESTAS</h1><br><br>
-        <button class="botonLanding" onclick="location.href='login.php'">Login</button>
+        <div class="contenedorLanding">
+            <div class="headerContenedor">
+                <h1></h1><br><br>
+            </div>
+            <div class="bienvenidoLanding">
+                <h2>Benvingut a la nostra pàgina d'enquestes</h2>
+                <a href="./login.php" class="botonLanding">INICIAR</a>
+            </div>
+        </div>
+        
     </div>
     <?php include("./includes/footer.php")?>
 </body>

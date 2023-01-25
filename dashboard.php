@@ -1,7 +1,6 @@
 <?php
 session_start();
 ?>
-<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,10 +14,30 @@ session_start();
 </head>
 <body class="bodyDashboard">
     <?php include("./includes/header.php")?>
+    <br>
+    <?php include("./includes/messageCSS.php")?>
+
+    <?php
+        //$_SESSION["arrayMensajesCSS"] = array();
+        if(!isset($_SESSION["arrayMensajesCSS"])){
+            $_SESSION["arrayMensajesCSS"] = array();
+            echo "<script type='text/javascript'>eliminarScrollBody('.bodyDashboard')</script>";
+
+        }
+        else{
+            for ($i=0; $i < count($_SESSION["arrayMensajesCSS"]); $i++) { 
+                echo "<script type='text/javascript'>mostrarMensajeCSS('".$_SESSION["arrayMensajesCSS"][$i][0]."','".$_SESSION["arrayMensajesCSS"][$i][1]."')</script>";
+
+            }
+            $_SESSION["arrayMensajesCSS"] = array();
+        }
+    ?>
+
     <?php
         $rolUsuario = $_SESSION['user']['role'];
         if($rolUsuario == "admin"){
             include("./includes/dashboardAdmin.php");
+            
         }
         else if($rolUsuario == "profesor"){
             include("./includes/dashboardProfessors.php");
@@ -26,6 +45,7 @@ session_start();
         else{
             echo "<p>".$rolUsuario."</p>";
         }
+        
     ?>
     <?php include("./includes/footer.php")?>
 </body>
