@@ -117,9 +117,9 @@ body {
 }
 
 /*Landing Page*/
-/* .bodyIndex{
+.bodyIndex{
     overflow-y: hidden;
-} */
+}
 
 .contenedorPrincipal{
     overflow-x: hidden;
@@ -204,6 +204,7 @@ body {
 .botonDashboard:hover{
     transform: scale(1.1);
     color: black;
+    box-shadow: 5px 5px 3px black;
 }
 
 .imgBotonDashboard{
@@ -242,6 +243,7 @@ body {
 .botonPoll:hover{
     transform: scale(1.1);
     color: black;
+    box-shadow: 5px 5px 3px black;
 }
 
 .imgBotonPoll{
@@ -257,6 +259,7 @@ body {
 /* Contenedor Lista Encuestas*/
 #contenedorListaEncuestas{
     display: block;
+    box-shadow: 5px 5px 3px black;
 }
 
 #contenedorListaEncuestas table{
@@ -276,6 +279,7 @@ body {
 /* Contenedor Lista Preguntas*/
 #contenedorListaPreguntas{
     display: none;
+    box-shadow: 5px 5px 3px black;
 }
 
 #contenedorListaPreguntas table{
@@ -305,6 +309,8 @@ body {
     padding: 15px;
     width: 100%;
     border-radius: 5px;
+    margin-bottom: 10%;
+    box-shadow: 5px 5px 3px black;
 }
 
 #contenedorFormulario {
@@ -442,6 +448,55 @@ body {
     color: white;
 }
 
+/* Contenedor Aviso Eliminación */
+#contenedorAvisoEliminar{
+    width: 50%;
+    background-color: rgba(255, 165, 0,0.975);
+    border: 10px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    height: 200px;
+    margin: auto;
+    position: relative;
+    top: -270px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    box-shadow: 10px 10px 6px black;
+}
+
+#contenedorAvisoEliminar p{
+    margin-top: 8%;
+}
+
+#btnAvisoEliminarSi{
+    width: 15%;
+    height: 20%;
+    margin: 2%;
+    background-color: lightgray;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+#btnAvisoEliminarSi:hover{
+    transform: scale(1.2);
+    background-color: rgb(227, 0, 0);
+    color: white;
+}
+
+#btnAvisoEliminarNo{
+    width: 15%;
+    height: 20%;
+    margin: 2%;
+    background-color: lightgray;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+#btnAvisoEliminarNo:hover{
+    transform: scale(1.2);
+    color: white;
+    background-color: #636363;
+}
+
 
 /* Columnas Table*/
 .columnaID{
@@ -466,31 +521,43 @@ body {
 /* Message Css */
 #messagesCSS {
     width: 100%;
-
+    
 }
   
 .success-styling {
-    background-color: green;
+    background-color: rgba(0, 141, 0, 0.8);
     color: white;
     padding: 10px;
     text-align: center;
-    margin-bottom: 10px;
+    margin: auto;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    width: 80%;
+    
 }
 
 .error-styling {
-    background-color: red;
+    background-color: rgba(255, 0, 0,0.8);
     color: white;
     padding: 10px;
     text-align: center;
-    margin-bottom: 10px;
+    margin: auto;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    width: 80%;
+    
 }
 
 .info-styling {
-    background-color: blue;
+    background-color: rgba(0, 54, 201, 0.8);
     color: white;
     padding: 10px;
     text-align: center;
-    margin-bottom: 10px;
+    margin: auto;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    width: 80%;
+    
 }
 
 .warning-styling {
@@ -498,7 +565,11 @@ body {
     color: white;
     padding: 10px;
     text-align: center;
-    margin-bottom: 10px;
+    margin: auto;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    width: 80%;
+
 }
 
 .closebtn {

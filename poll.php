@@ -7,10 +7,10 @@
         $username = "enquestes_user";
         $pw = "P@ssw0rd";
         $pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
-        } catch (PDOException $e) {
+    } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
         exit;
-        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,14 +79,13 @@
                     if(isset($_POST["guardarPregunta"])){
                         $tipo = "correcto";
                         $mensajeCSS = "Has desat correctament la pregunta";
-                        array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
+                        echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
+                        //array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
                         
                         $questionName = $_POST["inpNombrePregunta"];
                         $questionType = strtolower($_POST["tipoPregunta"]);
                         $query = $pdo->prepare("insert into preguntas(texto,id_tipo_pregunta) select '".$questionName."' as texto, id as id_tipo_pregunta from tipos_preguntas where tipo = '".$questionType."';");
                         $query->execute();
-
-                        
 
                     }
                 ?>
