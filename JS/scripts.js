@@ -143,6 +143,7 @@ function crearFormularioDinamico(){
             $("#borrarPregunta").remove();
 
             crearDiv("#idFormPregunta","contenedorDinamico");
+            //crearParrafoDiv("#contenedorDinamico", "parrafoDinamico", "Introdueix l\'opció correcta en la primera casella")
             creacionInputsDinamicos(2);
             crearBoton("idAñadirInput", "button","Afegir", "#idFormPregunta");
 
@@ -153,34 +154,25 @@ function crearFormularioDinamico(){
 
             //let primerInput = $('#contenedorDinamico').find('input[type=text]').filter(':visible:first');
             //nombreInput = $("input[type=text]:eq(0)");
-            primerInput = $(".inputSimpleRespuesta:eq(0)");
-            segundoInput = $(".inputSimpleRespuesta:eq(1)");
+            primerInput = $("#inputSimpleRespuesta1");
+            segundoInput = $("#inputSimpleRespuesta2");
 
-            if(totalInputs <= 3){
-                $(".botonEliminarInput").prop("disabled", true);
-            }
-            else{
-                $(".botonEliminarInput").prop("disabled", false);
-            }
+            $("#botonEliminarInput1").prop("disabled", true);
+            $("#botonEliminarInput2").prop("disabled", true);
+            
 
             botonAgregar.addEventListener('click', e=> {
                 let div = document.createElement('div');
-                div.innerHTML = `<label>${totalInputs++}</label> - <input type="text" class="inputSimpleRespuesta" name="nombre[]" placeholder="Introdueix resposta" required><button type="button" class="botonEliminarInput" onclick="avisoEliminar(this)">Eliminar</button>`;
+                div.innerHTML = `<label>${totalInputs++}</label> - <input type="text" class="inputSimpleRespuesta" name="nombre[]" placeholder="Introdueix resposta" required><button type="button" class="botonEliminarInput" onclick="eliminarInputDinamico(this)">Eliminar</button>`;
                 contenedor.appendChild(div);
-                if(totalInputs <= 3){
-                    $(".botonEliminarInput").prop("disabled", true);
-                }
-                else{
-                    $(".botonEliminarInput").prop("disabled", false);
-                }
-                mostrarMensajeCSS("info","Has afegit una nova resposta");
+                mostrarMensajeCSS("correcto","Has afegit una nova resposta");
             });
 
             eliminarInputDinamico = (e) => {
                 const divPadre = e.parentNode;
                 divPadre.querySelector("input").value = "";
                 contenedor.removeChild(divPadre);
-                mostrarMensajeCSS("info","Has eliminat una resposta");
+                mostrarMensajeCSS("warning","Has eliminat una resposta");
                 actualizarNumeroInput();
             };
 
@@ -191,14 +183,8 @@ function crearFormularioDinamico(){
                     
                     divs[i].children[0].innerHTML = totalInputs++;
                 }
-                if(totalInputs <= 3){
-                    $(".botonEliminarInput").prop("disabled", true);
-                }
-                else{
-                    $(".botonEliminarInput").prop("disabled", false);
-                }
-
                 funcionesDinamicasFormulario();
+                
             };
 
             
@@ -285,7 +271,7 @@ function creacionInputsDinamicos(numInputs){
 
     for (let i = 1; i < numInputs+1; i++) {
         let div = document.createElement('div');
-        div.innerHTML = `<label>${i}</label> - <input type="text" class="inputSimpleRespuesta" name="nombre[]" placeholder="Introdueix resposta" required><button type="button" class="botonEliminarInput" onclick="avisoEliminar(this)">Eliminar</button>`;
+        div.innerHTML = `<label>${i}</label> - <input type="text" class="inputSimpleRespuesta" id="inputSimpleRespuesta${i}" name="nombre[]" placeholder="Introdueix resposta" required><button type="button" class="botonEliminarInput" id="botonEliminarInput${i}" onclick="eliminarInputDinamico(this)">Eliminar</button>`;
         contenedor.appendChild(div);
     }
 }
@@ -300,8 +286,11 @@ function reiniciarFormulario(){
 
 function funcionesDinamicasFormulario(){
     nombreInput = $("input[type=text]:eq(0)").val();
-    primerInput = $("input[type=text]:eq(1)").val();
-    segundoInput = $("input[type=text]:eq(2)").val();
+    if($("#tipoPregunta").val() == "simple"){
+        primerInput = $("input[type=text]:eq(1)").val();
+        segundoInput = $("input[type=text]:eq(2)").val();
+    }
+    
     $("#borrarPregunta").remove();
     if(!$("#guardarPregunta").val() && nombreInput.length > 0 && primerInput.length > 0 && segundoInput.length > 0){
         crearInput("submit","guardarPregunta","guardarPregunta","Guardar","#idFormPregunta");
