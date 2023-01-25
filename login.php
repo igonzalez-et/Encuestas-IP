@@ -1,7 +1,7 @@
 <?php
     session_start();
     
-    include "./includes/log.php";
+    include ("./includes/log.php");
    
     try {
         $hostname = "localhost";
