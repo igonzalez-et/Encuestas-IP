@@ -1,17 +1,18 @@
 <?php
     session_start();
     
-
+    include "./includes/log.php";
+   
     try {
-        $hostname = "localhost";
+        $hostname = "oscarweb.tk";
         $dbname = "enquestes_ip";
         $username = "enquestes_user";
         $pw = "P@ssw0rd";
         $pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
-        
+        appendLog("S", "Successful connection to the database");
         } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        
+        appendLog("E", "Failed to get DB handle: " . $e->getMessage());
         exit;
         }
 ?>
