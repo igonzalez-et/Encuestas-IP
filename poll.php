@@ -1,16 +1,16 @@
 <?php
     session_start();
 
-    //try {
-        //$hostname = "localhost";
-        //$dbname = "enquestes_ip";
-        //$username = "enquestes_user";
-        //$pw = "P@ssw0rd";
-        //$pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
-        //} catch (PDOException $e) {
-       // echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-      //  exit;
-    //}
+    try {
+        $hostname = "localhost";
+        $dbname = "enquestes_ip";
+        $username = "enquestes_user";
+        $pw = "P@ssw0rd";
+        $pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
+    } catch (PDOException $e) {
+        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        exit;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,10 +82,10 @@
                         echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
                         //array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
                         
-                        //$questionName = $_POST["inpNombrePregunta"];
-                        //$questionType = strtolower($_POST["tipoPregunta"]);
-                        //$query = $pdo->prepare("insert into preguntas(texto,id_tipo_pregunta) select '".$questionName."' as texto, id as id_tipo_pregunta from tipos_preguntas where tipo = '".$questionType."';");
-                        //$query->execute();
+                        $questionName = $_POST["inpNombrePregunta"];
+                        $questionType = strtolower($_POST["tipoPregunta"]);
+                        $query = $pdo->prepare("insert into preguntas(texto,id_tipo_pregunta) select '".$questionName."' as texto, id as id_tipo_pregunta from tipos_preguntas where tipo = '".$questionType."';");
+                        $query->execute();
 
                     }
                 ?>
@@ -106,18 +106,18 @@
                         <th class="columnaFechaFinal">Data Final</th>
                     </tr>
                     <?php
-                        //$query = $pdo->prepare("select * from encuestas");
+                        $query = $pdo->prepare("select * from encuestas");
             
-                        //$query->execute();
+                        $query->execute();
 
-                        //while($row = $query->fetch()){
-                          //  echo "<tr>\n
-                            //    <td class='columnaID'>". $row['id'] ."</td>\n
-                            //    <td class='columnaNombre'>". $row['texto'] ."</td>\n
-                            //    <td class='columnaFechaInicio'>". $row['fecha_inicio'] ."</td>\n
-                            //    <td class='columnaFechaFinal'>". $row['fecha_final'] ."</td>\n
-                          //  </tr>";
-                        //}
+                        while($row = $query->fetch()){
+                            echo "<tr>\n
+                                <td class='columnaID'>". $row['id'] ."</td>\n
+                                <td class='columnaNombre'>". $row['texto'] ."</td>\n
+                                <td class='columnaFechaInicio'>". $row['fecha_inicio'] ."</td>\n
+                                <td class='columnaFechaFinal'>". $row['fecha_final'] ."</td>\n
+                            </tr>";
+                        }
                     ?>
                 </table>
             </div>
@@ -131,17 +131,17 @@
                         <th>Tipus Pregunta</th>
                     </tr>
                     <?php
-                        //$query = $pdo->prepare("select p.id as id,p.texto as texto,CONCAT(UPPER(SUBSTRING(t.tipo,1,1)),SUBSTRING(t.tipo,2,LENGTH(t.tipo))) AS tipo from preguntas p inner join tipos_preguntas t on p.id_tipo_pregunta = t.id order by id;");
+                        $query = $pdo->prepare("select p.id as id,p.texto as texto,CONCAT(UPPER(SUBSTRING(t.tipo,1,1)),SUBSTRING(t.tipo,2,LENGTH(t.tipo))) AS tipo from preguntas p inner join tipos_preguntas t on p.id_tipo_pregunta = t.id order by id;");
             
-                        //$query->execute();
+                        $query->execute();
 
-                        //while($row = $query->fetch()){
-                          //  echo "<tr>\n
-                            //    <td class='columnaID'>". $row['id'] ."</td>\n
-                            //    <td class='columnaNombre'>". $row['texto'] ."</td>\n
-                            //    <td class='columnaTipo'>". $row['tipo'] ."</td>\n
-                          //  </tr>";
-                       // }
+                        while($row = $query->fetch()){
+                            echo "<tr>\n
+                                <td class='columnaID'>". $row['id'] ."</td>\n
+                                <td class='columnaNombre'>". $row['texto'] ."</td>\n
+                                <td class='columnaTipo'>". $row['tipo'] ."</td>\n
+                            </tr>";
+                        }
                     ?>
                 </table>
             </div>
