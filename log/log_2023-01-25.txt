@@ -1,0 +1,8 @@
+[E] - [17:54:28] - [Failed to get DB handle: could not find driver]
+[E] - [18:04:44] - [Failed to get DB handle: could not find driver]
+[E] - [18:05:20] - [Failed to get DB handle: could not find driver]
+[E] - [18:05:35] - [Failed to get DB handle: could not find driver]
+[E] - [18:05:45] - [Failed to get DB handle: could not find driver]
+[E] - [18:06:13] - [Failed to get DB handle: could not find driver]
+[E] - [18:06:17] - [Failed to get DB handle: could not find driver]
+[E] - [18:06:26] - [Failed to get DB handle: could not find driver]
