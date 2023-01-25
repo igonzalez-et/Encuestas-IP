@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include "./includes/log.php";
+    
 
     try {
         $hostname = "localhost";
@@ -8,10 +8,10 @@
         $username = "enquestes_user";
         $pw = "P@ssw0rd";
         $pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
-        addLog("S", "Successful connection to the database");    
+        
         } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        addLog("E", "Failed to get DB handle");
+        
         exit;
         }
 ?>
