@@ -195,6 +195,7 @@ body {
 }
 
 .botonDashboard{  
+    text-decoration: none;
     width: 30%;
     margin-top: 2%;
     color: #636363;

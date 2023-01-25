@@ -1,5 +1,7 @@
 <?php
     session_start();
+    include ("./includes/log.php");
+
 
     try {
         $hostname = "localhost";
@@ -7,8 +9,11 @@
         $username = "enquestes_user";
         $pw = "P@ssw0rd";
         $pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
+        appendLog("S", "Successful connection to the database");
+
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        appendLog("E", "Failed to get DB handle: " . $e->getMessage());
         exit;
     }
 ?>
@@ -81,12 +86,15 @@
                         $mensajeCSS = "Has desat correctament la pregunta";
                         echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
                         //array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
-                        
+                        try{
                         $questionName = $_POST["inpNombrePregunta"];
                         $questionType = strtolower($_POST["tipoPregunta"]);
                         $query = $pdo->prepare("insert into preguntas(texto,id_tipo_pregunta) select '".$questionName."' as texto, id as id_tipo_pregunta from tipos_preguntas where tipo = '".$questionType."';");
                         $query->execute();
-
+                        appendLog("S", "Query executed successfully, question name: (" . $questionName . "), type: ".$questionType ."--".$query);
+                        }catch(PDOException $e){
+                        appendLog("E", "Failed to execute the querym question name: (" . $questionName . "), type: ".$questionType ."--".$query." ". $e->getMessage());
+                        }
                     }
                 ?>
             </div>
@@ -106,9 +114,15 @@
                         <th class="columnaFechaFinal">Data Final</th>
                     </tr>
                     <?php
+                    try {
                         $query = $pdo->prepare("select * from encuestas");
             
                         $query->execute();
+                        appendLog("S", "Query executed successfully - '" . $query . "'");
+                    } catch (PDOException $e) {
+                        appendLog("E", "Failed to execute the query - '".$query."': " . $e->getMessage());
+                    }
+                        
 
                         while($row = $query->fetch()){
                             echo "<tr>\n
@@ -131,9 +145,16 @@
                         <th>Tipus Pregunta</th>
                     </tr>
                     <?php
+                    try {
                         $query = $pdo->prepare("select p.id as id,p.texto as texto,CONCAT(UPPER(SUBSTRING(t.tipo,1,1)),SUBSTRING(t.tipo,2,LENGTH(t.tipo))) AS tipo from preguntas p inner join tipos_preguntas t on p.id_tipo_pregunta = t.id order by id;");
             
-                        $query->execute();
+                        $query->execute();                    
+                        appendLog("S", "Query executed successfully - '" . $query . "'");
+                    } 
+                    catch (PDOException $e) {
+                        appendLog("E", "Failed to execute the query - '".$query."': " . $e->getMessage());
+                    }
+                        
 
                         while($row = $query->fetch()){
                             echo "<tr>\n

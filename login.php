@@ -89,7 +89,7 @@
                     array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
 
                     echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
-                    appendLog("S", "The user ". $_POST["loginInputEmail"] ." tried to connect, " . " and the password: ".$_POST['loginInputPass']);
+                    appendLog("S", "The user (". $_POST["loginInputEmail"] .") tried to connect, " . " and the password: ".$_POST['loginInputPass']);
                     header('Location: ./dashboard.php');
                     die();
                 }else{
@@ -97,14 +97,14 @@
                     $mensajeCSS = "Usuari o contrasenya incorrecte";
                     array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
                     echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
-                    appendLog("W", "The user ". $_POST["loginInputEmail"] ." tried to connect, " . " and the password: ".$_POST['loginInputPass']);
+                    appendLog("W", "The user (". $_POST["loginInputEmail"] .") tried to connect, " . " and the password: ".$_POST['loginInputPass']);
                 }
             }else{
                 $tipo = "error";
                 $mensajeCSS = "Usuari o contrasenya incorrecte";
                 array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
                 echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
-                appendLog("W", "The user ". $_POST["loginInputEmail"] ." tried to connect, " . " and the password: ".$_POST['loginInputPass']);
+                appendLog("W", "The user (". $_POST["loginInputEmail"] .") tried to connect, " . " and the password: ".$_POST['loginInputPass']);
                 
             }
 
