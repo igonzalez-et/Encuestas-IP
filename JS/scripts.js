@@ -143,7 +143,7 @@ function crearFormularioDinamico(){
             $("#borrarPregunta").remove();
 
             crearDiv("#idFormPregunta","contenedorDinamico");
-            //crearParrafoDiv("#contenedorDinamico", "parrafoDinamico", "Introdueix l\'opció correcta en la primera casella")
+            crearParrafoDiv("#contenedorDinamico", "parrafoDinamico", "Introdueix l\'opció correcta en la primera casella")
             creacionInputsDinamicos(2);
             crearBoton("idAñadirInput", "button","Afegir", "#idFormPregunta");
 
