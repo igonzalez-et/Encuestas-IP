@@ -1,7 +1,6 @@
 <?php
 session_start();
 ?>
-<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +37,7 @@ session_start();
         $rolUsuario = $_SESSION['user']['role'];
         if($rolUsuario == "admin"){
             include("./includes/dashboardAdmin.php");
+            
         }
         else if($rolUsuario == "profesor"){
             include("./includes/dashboardProfessors.php");

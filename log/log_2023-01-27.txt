@@ -1,0 +1,4 @@
+[S] - [15:31:34] - [Successful connection to the database]
+[S] - [15:31:39] - [Successful connection to the database]
+[S] - [15:31:40] - [The user (a@gmail.com) tried to connect,  and the password: 1234]
+[S] - [15:31:45] - [Successful connection to the database]

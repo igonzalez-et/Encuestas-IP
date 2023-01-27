@@ -1,16 +1,18 @@
 <?php
     session_start();
-    include "./includes/log.php";
+    
+    include ("./includes/log.php");
+   
     try {
         $hostname = "localhost";
         $dbname = "enquestes_ip";
         $username = "enquestes_user";
         $pw = "P@ssw0rd";
         $pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
-        appendLog("S", "Successful connection to the database");    
+        appendLog("S", "Successful connection to the database");
         } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        appendLog("E", "Failed to get DB handle");
+        appendLog("E", "Failed to get DB handle: " . $e->getMessage());
         exit;
         }
 ?>
@@ -42,7 +44,7 @@
                 echo "<script type='text/javascript'>mostrarMensajeCSS('".$_SESSION["arrayMensajesCSS"][$i][0]."','".$_SESSION["arrayMensajesCSS"][$i][1]."')</script>";
 
             }
-            //$_SESSION["arrayMensajesCSS"] = array();
+            $_SESSION["arrayMensajesCSS"] = array();
         }
         
     ?>
@@ -87,19 +89,22 @@
                     array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
 
                     echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
-                    header('Location: http://localhost:8080/dashboard.php');
+                    appendLog("S", "The user (". $_POST["loginInputEmail"] .") tried to connect, " . " and the password: ".$_POST['loginInputPass']);
+                    header('Location: ./dashboard.php');
                     die();
                 }else{
                     $tipo = "error";
                     $mensajeCSS = "Usuari o contrasenya incorrecte";
                     array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
                     echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
+                    appendLog("W", "The user (". $_POST["loginInputEmail"] .") tried to connect, " . " and the password: ".$_POST['loginInputPass']);
                 }
             }else{
                 $tipo = "error";
                 $mensajeCSS = "Usuari o contrasenya incorrecte";
                 array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
                 echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
+                appendLog("W", "The user (". $_POST["loginInputEmail"] .") tried to connect, " . " and the password: ".$_POST['loginInputPass']);
                 
             }
 

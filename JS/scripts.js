@@ -12,8 +12,7 @@ function cerrarMensajeCSS(){
 }
 
 function mostrarMensajeCSS(tipo,texto){
-    // $(".bodyLogin").css("overflow-y", "scroll");
-    // $(".bodyDashboard").css("overflow-y", "scroll");
+
     if(tipo == "error"){
         $("#messagesCSS").append("<div class='error-message'>Error: "+texto+"<span class='closebtn' onclick='this.parentElement.parentElement.style.display='none';'>&times;</span></div>");
         $(".error-message").addClass("error-styling");
@@ -70,25 +69,24 @@ $(".botonPoll").click(function(){
 
 
 function crearFormularioDinamico(){
+    var nombreInput;
+    var primerInput;
+    var segundoInput;
     crearDiv("#contenedorCrearPregunta","contenedorFormulario");
-    crearFormulario("#contenedorFormulario","idFormPregunta")
-    crearSelectForm("Tipo de pregunta:","tipoPregunta","tipoPregunta","#idFormPregunta");
+    crearFormulario("#contenedorFormulario","idFormPregunta");
+    crearSelectForm("Tipus de pregunta:","tipoPregunta","tipoPregunta","#idFormPregunta");
     crearOptionSelect("Tipus de pregunta","#tipoPregunta",true);
     crearOptionSelect("text","#tipoPregunta");
     crearOptionSelect("numeric","#tipoPregunta");
     crearOptionSelect("simple","#tipoPregunta");
-    crearLabelAndInput("Nombre de Pregunta","text","inpNombrePregunta","inpNombrePregunta","#idFormPregunta");
+    crearLabelAndInput("Nom de Pregunta","text","inpNombrePregunta","inpNombrePregunta","#idFormPregunta");
     crearInput("reset","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
 
     $("#tipoPregunta").on('change', function() {
         //Si la opción del desplegable es 'text'
         if ($(this).val() == 'text'){
-            $("#inpNombrePregunta").val("");
-            $("#guardarPregunta").remove();
-            $("#contenedorDinamico").remove();
-            $("#idAñadirInput").remove();
-            $("#borrarPregunta").remove();
-           
+            reiniciarFormulario();
+            
             $("#inpNombrePregunta").on('input',function(){
                 $("#borrarPregunta").remove();
                 if(!$("#guardarPregunta").val()){
@@ -97,69 +95,84 @@ function crearFormularioDinamico(){
                 if($("#inpNombrePregunta").val() == ""){
                     $("#guardarPregunta").remove();
                 }
-                crearInput("reset","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+                crearInput("button","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+                $("#borrarPregunta").click(function(){
+                    $("#contenedorFormulario").remove();
+                    crearFormularioDinamico();
+                });
             });
-            crearInput("reset","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+            crearInput("button","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+            $("#borrarPregunta").click(function(){
+                $("#contenedorFormulario").remove();
+                crearFormularioDinamico();
+            });
         }
 
         //Si la opción del desplegable es 'numeric'
         else if ($(this).val() == 'numeric') {
-            $("#inpNombrePregunta").val("");
-            $("#guardarPregunta").remove();
-            $("#contenedorDinamico").remove();
-            $("#idAñadirInput").remove();
-            $("#borrarPregunta").remove();
+            
+            reiniciarFormulario();
             $("#inpNombrePregunta").on('input',function(){
                 $("#borrarPregunta").remove();
-                if(!$("#guardarPregunta").val()){
+                if(!$("#guardarPregunta").val() && $("#inpNombrePregunta").length > 0){
                     crearInput("submit","guardarPregunta","guardarPregunta","Guardar","#idFormPregunta");
                 }
                 if($("#inpNombrePregunta").val() == ""){
                     $("#guardarPregunta").remove();
                 }
-                crearInput("reset","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+                crearInput("button","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+                $("#borrarPregunta").click(function(){
+                    $("#contenedorFormulario").remove();
+                    crearFormularioDinamico();
+                });
             });
-            crearInput("reset","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+            crearInput("button","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+            $("#borrarPregunta").click(function(){
+                $("#contenedorFormulario").remove();
+                crearFormularioDinamico();
+            });
+
         }
 
         //Si la opción del desplegable es 'simple'
         else if ($(this).val() == 'simple'){
+
+
             $("#inpNombrePregunta").val("");
             $("#guardarPregunta").remove();
             $("#borrarPregunta").remove();
 
             crearDiv("#idFormPregunta","contenedorDinamico");
+            crearParrafoDiv("#contenedorDinamico", "parrafoDinamico", "Introdueix l\'opció correcta en la primera casella")
             creacionInputsDinamicos(2);
             crearBoton("idAñadirInput", "button","Afegir", "#idFormPregunta");
-
 
             const contenedor = document.querySelector("#contenedorDinamico");
             const botonAgregar = document.querySelector("#idAñadirInput");
 
             let totalInputs = 3;
 
-            if(totalInputs <= 3){
-                $(".botonEliminarInput").prop("disabled", true);
-            }
-            else{
-                $(".botonEliminarInput").prop("disabled", false);
-            }
+            //let primerInput = $('#contenedorDinamico').find('input[type=text]').filter(':visible:first');
+            //nombreInput = $("input[type=text]:eq(0)");
+            primerInput = $("#inputSimpleRespuesta1");
+            segundoInput = $("#inputSimpleRespuesta2");
+
+            $("#botonEliminarInput1").prop("disabled", true);
+            $("#botonEliminarInput2").prop("disabled", true);
+            
 
             botonAgregar.addEventListener('click', e=> {
                 let div = document.createElement('div');
-                div.innerHTML = `<label>${totalInputs++}</label> - <input type="text" name="nombre[]" placeholder="Introdueix resposta"><button type="button" class="botonEliminarInput" onclick="eliminarInputDinamico(this)">Eliminar</button>`;
+                div.innerHTML = `<label>${totalInputs++}</label> - <input type="text" class="inputSimpleRespuesta" name="nombre[]" placeholder="Introdueix resposta" required><button type="button" class="botonEliminarInput" onclick="eliminarInputDinamico(this)">Eliminar</button>`;
                 contenedor.appendChild(div);
-                if(totalInputs <= 3){
-                    $(".botonEliminarInput").prop("disabled", true);
-                }
-                else{
-                    $(".botonEliminarInput").prop("disabled", false);
-                }
+                mostrarMensajeCSS("correcto","Has afegit una nova resposta");
             });
 
             eliminarInputDinamico = (e) => {
                 const divPadre = e.parentNode;
+                divPadre.querySelector("input").value = "";
                 contenedor.removeChild(divPadre);
+                mostrarMensajeCSS("warning","Has eliminat una resposta");
                 actualizarNumeroInput();
             };
 
@@ -170,42 +183,43 @@ function crearFormularioDinamico(){
                     
                     divs[i].children[0].innerHTML = totalInputs++;
                 }
-                if(totalInputs <= 3){
-                    $(".botonEliminarInput").prop("disabled", true);
-                }
-                else{
-                    $(".botonEliminarInput").prop("disabled", false);
-                }
+                funcionesDinamicasFormulario();
+                
             };
 
-            $("#inpNombrePregunta").on('input',function(){
-                $("#borrarPregunta").remove();
-                if(!$("#guardarPregunta").val()){
-                    $('div').each (function () {
-                        console.log($(this).children().slice(0,2));
-                    });
-                    crearInput("submit","guardarPregunta","guardarPregunta","Guardar","#idFormPregunta");
-                }
-                if($("#inpNombrePregunta").val() == ""){
-                    $("#guardarPregunta").remove();
-                }
-                crearInput("reset","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+            
+
+            primerInput.on("input", function(){
+                funcionesDinamicasFormulario();
             });
-            crearInput("reset","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+
+            segundoInput.on("input", function(){
+                funcionesDinamicasFormulario();
+            });
+
+            $("#inpNombrePregunta").on('input',function(){
+                funcionesDinamicasFormulario();
+            });
+            crearInput("button","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+            $("#borrarPregunta").click(function(){
+                $("#contenedorFormulario").remove();
+                crearFormularioDinamico();
+            });
         }
 
-        //Si la opción del desplegable es '--'
-        else{
-            $("#contenedorFormulario").remove();
-            crearFormularioDinamico();
-        }
     });
+    
 
 }
 
 function crearDiv(idContenedorPadre,idContenedorNuevo){
     const contenedorNuevo = "<div id='"+idContenedorNuevo+"'></div>";
     $(idContenedorPadre).append(contenedorNuevo);
+}
+
+function crearParrafoDiv(idContenedorPadre, idParrafo, textoParrafo){
+    const parrafoNuevo = "<p id='"+idParrafo+"'>"+textoParrafo+"</p>";
+    $(idContenedorPadre).append(parrafoNuevo);
 }
 
 function crearFormulario(contenedorPadre, idFormulario){
@@ -257,9 +271,53 @@ function creacionInputsDinamicos(numInputs){
 
     for (let i = 1; i < numInputs+1; i++) {
         let div = document.createElement('div');
-        div.innerHTML = `<label>${i}</label> - <input type="text" name="nombre[]" placeholder="Introdueix resposta"><button type="button" class="botonEliminarInput" onclick="eliminarInputDinamico(this)">Eliminar</button>`;
+        div.innerHTML = `<label>${i}</label> - <input type="text" class="inputSimpleRespuesta" id="inputSimpleRespuesta${i}" name="nombre[]" placeholder="Introdueix resposta" required><button type="button" class="botonEliminarInput" id="botonEliminarInput${i}" onclick="eliminarInputDinamico(this)">Eliminar</button>`;
         contenedor.appendChild(div);
     }
+}
+
+function reiniciarFormulario(){
+    $("#inpNombrePregunta").val("");
+    $("#guardarPregunta").remove();
+    $("#contenedorDinamico").remove();
+    $("#idAñadirInput").remove();
+    $("#borrarPregunta").remove();
+}
+
+function funcionesDinamicasFormulario(){
+    nombreInput = $("input[type=text]:eq(0)").val();
+    if($("#tipoPregunta").val() == "simple"){
+        primerInput = $("input[type=text]:eq(1)").val();
+        segundoInput = $("input[type=text]:eq(2)").val();
+    }
+    
+    $("#borrarPregunta").remove();
+    if(!$("#guardarPregunta").val() && nombreInput.length > 0 && primerInput.length > 0 && segundoInput.length > 0){
+        crearInput("submit","guardarPregunta","guardarPregunta","Guardar","#idFormPregunta");
+    }
+    if(nombreInput.length == 0 || primerInput.length == 0 || segundoInput.length == 0){
+        $("#guardarPregunta").remove();
+    }
+    crearInput("button","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
+    $("#borrarPregunta").click(function(){
+        $("#contenedorFormulario").remove();
+        crearFormularioDinamico();
+    });
+}
+
+function avisoEliminar(e){
+    crearDiv("#contenedorCrearPregunta","contenedorAvisoEliminar");
+    crearParrafoDiv("#contenedorAvisoEliminar", "parrafoAviso", "Vols eliminar aquesta resposta?");
+    crearBoton("btnAvisoEliminarSi", "button", "Sí", "#contenedorAvisoEliminar");
+    crearBoton("btnAvisoEliminarNo", "button", "No", "#contenedorAvisoEliminar");
+    $("#btnAvisoEliminarNo").click(function(){
+        $("#contenedorAvisoEliminar").remove();
+    });
+    $("#btnAvisoEliminarSi").click(function(){
+        $("#contenedorAvisoEliminar").remove();
+        eliminarInputDinamico(e);
+    });
+    
 }
 
 function eliminarHijos(padre){
@@ -267,6 +325,6 @@ function eliminarHijos(padre){
 }
 
 function eliminarScrollBody(body){
-    $(body).css("overflow-y","scroll");
+    $(body).css("overflow-y","hidden");
 }
 

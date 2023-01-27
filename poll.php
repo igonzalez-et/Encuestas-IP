@@ -1,5 +1,7 @@
 <?php
     session_start();
+    include ("./includes/log.php");
+
 
     try {
         $hostname = "localhost";
@@ -7,10 +9,13 @@
         $username = "enquestes_user";
         $pw = "P@ssw0rd";
         $pdo = new PDO ("mysql:host=$hostname;dbname=$dbname","$username","$pw");
-        } catch (PDOException $e) {
+        appendLog("S", "Successful connection to the database");
+
+    } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        appendLog("E", "Failed to get DB handle: " . $e->getMessage());
         exit;
-        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,24 +25,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/style.css" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src='./JS/scripts.js'></script>
     <title>Enquestes</title>
 </head>
 <body class="bodyPoll">
     <?php include("./includes/header.php")?>
     <br>
     <?php include("./includes/messageCSS.php")?>
-
+        
     <?php
+        $tipo = "info";
+        $mensajeCSS = "Has entrat a l\'administració d\'enquestes";
+        array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
+        
         //$_SESSION["arrayMensajesCSS"] = array();
         if(!isset($_SESSION["arrayMensajesCSS"])){
             $_SESSION["arrayMensajesCSS"] = array();
+            
         }
         else{
             for ($i=0; $i < count($_SESSION["arrayMensajesCSS"]); $i++) { 
                 echo "<script type='text/javascript'>mostrarMensajeCSS('".$_SESSION["arrayMensajesCSS"][$i][0]."','".$_SESSION["arrayMensajesCSS"][$i][1]."')</script>";
 
             }
-            //$_SESSION["arrayMensajesCSS"] = array();
+            $_SESSION["arrayMensajesCSS"] = array();
         }
     ?>
 
@@ -71,12 +82,19 @@
                     $userMail = $_SESSION["user"]["email"];
                     
                     if(isset($_POST["guardarPregunta"])){
+                        $tipo = "correcto";
+                        $mensajeCSS = "Has desat correctament la pregunta";
+                        echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
+                        array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
+                        
                         $questionName = $_POST["inpNombrePregunta"];
                         $questionType = strtolower($_POST["tipoPregunta"]);
                         $query = $pdo->prepare("insert into preguntas(texto,id_tipo_pregunta) select '".$questionName."' as texto, id as id_tipo_pregunta from tipos_preguntas where tipo = '".$questionType."';");
                         $query->execute();
-
+                        //appendLog("S", "Query executed successfully, question name: (" . $questionName . "), type: ".$questionType ."--".$query);
+                        
                     }
+                    
                 ?>
             </div>
 
@@ -95,9 +113,13 @@
                         <th class="columnaFechaFinal">Data Final</th>
                     </tr>
                     <?php
+                    
                         $query = $pdo->prepare("select * from encuestas");
             
                         $query->execute();
+                       
+                   
+                        
 
                         while($row = $query->fetch()){
                             echo "<tr>\n
@@ -107,6 +129,7 @@
                                 <td class='columnaFechaFinal'>". $row['fecha_final'] ."</td>\n
                             </tr>";
                         }
+                        
                     ?>
                 </table>
             </div>
@@ -120,9 +143,14 @@
                         <th>Tipus Pregunta</th>
                     </tr>
                     <?php
+                   
                         $query = $pdo->prepare("select p.id as id,p.texto as texto,CONCAT(UPPER(SUBSTRING(t.tipo,1,1)),SUBSTRING(t.tipo,2,LENGTH(t.tipo))) AS tipo from preguntas p inner join tipos_preguntas t on p.id_tipo_pregunta = t.id order by id;");
             
-                        $query->execute();
+                        $query->execute();                    
+                        //appendLog("S", "Query executed successfully - '" . $query . "'");
+                   
+                    
+                        
 
                         while($row = $query->fetch()){
                             echo "<tr>\n
