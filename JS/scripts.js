@@ -49,6 +49,8 @@ $(".botonPoll").click(function(){
         $("#contenedorListaPreguntas").css("display","none");
         $("#contenedorCrearPregunta").css("display","none");
         $("#contenedorCrearEncuesta").css("display","block");
+        $("#contenedorFormulario").remove();
+        crearFormularioDinamicoEncuesta();
     }
     else if($(this).attr('id')=="botonListarPreguntas"){
         $("#contenedorCrearEncuesta").css("display","none");
@@ -79,7 +81,7 @@ function crearFormularioDinamico(){
     crearOptionSelect("text","#tipoPregunta");
     crearOptionSelect("numeric","#tipoPregunta");
     crearOptionSelect("simple","#tipoPregunta");
-    crearLabelAndInput("Nom de Pregunta","text","inpNombrePregunta","inpNombrePregunta","#idFormPregunta");
+    crearLabelAndInput("Nom de pregunta:","text","inpNombrePregunta","inpNombrePregunta","#idFormPregunta");
     crearInput("reset","borrarPregunta","borrarPregunta","Cancelar","#idFormPregunta");
 
     $("#tipoPregunta").on('change', function() {
@@ -143,7 +145,7 @@ function crearFormularioDinamico(){
             $("#borrarPregunta").remove();
 
             crearDiv("#idFormPregunta","contenedorDinamico");
-            //crearParrafoDiv("#contenedorDinamico", "parrafoDinamico", "Introdueix l\'opció correcta en la primera casella")
+            crearParrafoDiv("#contenedorDinamico", "parrafoDinamico", "Introdueix l\'opció correcta en la primera casella")
             creacionInputsDinamicos(2);
             crearBoton("idAñadirInput", "button","Afegir", "#idFormPregunta");
 
@@ -165,14 +167,12 @@ function crearFormularioDinamico(){
                 let div = document.createElement('div');
                 div.innerHTML = `<label>${totalInputs++}</label> - <input type="text" class="inputSimpleRespuesta" name="nombre[]" placeholder="Introdueix resposta" required><button type="button" class="botonEliminarInput" onclick="eliminarInputDinamico(this)">Eliminar</button>`;
                 contenedor.appendChild(div);
-                mostrarMensajeCSS("correcto","Has afegit una nova resposta");
             });
 
             eliminarInputDinamico = (e) => {
                 const divPadre = e.parentNode;
                 divPadre.querySelector("input").value = "";
                 contenedor.removeChild(divPadre);
-                mostrarMensajeCSS("warning","Has eliminat una resposta");
                 actualizarNumeroInput();
             };
 
@@ -206,10 +206,33 @@ function crearFormularioDinamico(){
                 crearFormularioDinamico();
             });
         }
-
     });
-    
+}
 
+function crearFormularioDinamicoEncuesta(){
+    crearDiv("#contenedorCrearEncuesta","contenedorFormulario");
+    crearFormulario("#contenedorFormulario","idFormEncuesta");
+
+    crearDiv("#idFormEncuesta","contenedorNombreEncuesta");
+    crearLabelAndInput("Nom d'enquesta:<br>","text","inpNombreEncuesta","inpNombreEncuesta","#contenedorNombreEncuesta");
+
+    crearDiv("#idFormEncuesta","contenedorEleccionFechas");
+    crearLabelAndInput("Data inici:<br>","date","inpFechaInicio","inpFechaInicio","#contenedorEleccionFechas");
+    crearLabelAndInput("Data final:<br>","date","inpFechaFinal","inpFechaFinal","#contenedorEleccionFechas");
+
+    crearDiv("#idFormEncuesta","contenedorProfesores");
+    crearParrafoDiv("#contenedorProfesores","parrafoProfesores","Escull els professors per a l'enquesta:");
+
+    crearDiv("#contenedorProfesores","contenedorEleccionProfesores");
+    crearParrafoDiv("#contenedorEleccionProfesores","parrafoProfesores","Professors disponibles:");
+    arrayNombreProfesores(arrayProfesores,"#contenedorEleccionProfesores");
+
+    crearDiv("#contenedorProfesores","contenedorEleccionProfesores");
+    crearParrafoDiv("#contenedorEleccionProfesores","parrafoProfesores","Professors seleccionats:");
+
+    crearDiv("#idFormEncuesta","contenedorEleccionPreguntas");
+    crearParrafoDiv("#contenedorEleccionPreguntas","parrafoPreguntas","Escull les preguntes per a l'enquesta:");
+    arrayNombrePreguntas(arrayPreguntas,"#contenedorEleccionPreguntas");
 }
 
 function crearDiv(idContenedorPadre,idContenedorNuevo){
@@ -318,6 +341,18 @@ function avisoEliminar(e){
         eliminarInputDinamico(e);
     });
     
+}
+
+function arrayNombreProfesores(array,divPadre){
+    for (let i = 0; i < array.length; i++) {
+        $(divPadre).append("<button><p>"+array[i]+"</p></button>");
+    }
+}
+
+function arrayNombrePreguntas(array,divPadre){
+    for (let i = 0; i < array.length; i++) {
+        $(divPadre).append("<p>"+array[i]+"</p>");
+    }
 }
 
 function eliminarHijos(padre){

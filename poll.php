@@ -89,7 +89,7 @@
                         
                         $questionName = $_POST["inpNombrePregunta"];
                         $questionType = strtolower($_POST["tipoPregunta"]);
-                        $query = $pdo->prepare("insert into preguntas(texto,id_tipo_pregunta) select '".$questionName."' as texto, id as id_tipo_pregunta from tipos_preguntas where tipo = '".$questionType."';");
+                        $query = $pdo->prepare("insert into preguntas(textos,id_tipos_preguntas) select '".$questionName."' as texto, id as id_tipo_pregunta from tipos_preguntas where tipos = '".$questionType."';");
                         $query->execute();
                         //appendLog("S", "Query executed successfully, question name: (" . $questionName . "), type: ".$questionType ."--".$query);
                         
@@ -100,7 +100,29 @@
 
             <!-- Contenedor Crear Encuesta -->
             <div id="contenedorCrearEncuesta">
-                
+                <?php
+                    $_SESSION["nombresProfesores"] = array();
+                    $arrayProfesores = $_SESSION["nombresProfesores"];
+                    $queryProfesores = $pdo->prepare("select * from usuarios where role='profesor'");
+                    $queryProfesores->execute();
+                    
+                    while($rowProfesores = $queryProfesores->fetch()){
+                            array_push($arrayProfesores,$rowProfesores['nombres']);
+                    }
+                    $_SESSION["nombresPreguntas"] = array();
+                    $arrayPreguntas = $_SESSION["nombresPreguntas"];
+                    $queryPreguntas = $pdo->prepare("select * from preguntas");
+                    $queryPreguntas->execute();
+
+                    while($rowPreguntas = $queryPreguntas->fetch()){
+                        array_push($arrayPreguntas,$rowPreguntas['textos']);
+                    }
+
+                    echo "<script>
+                    var arrayProfesores = ".json_encode($arrayProfesores).";
+                    var arrayPreguntas = ".json_encode($arrayPreguntas).";
+                    </script>";
+                ?>
             </div>
 
             <!-- Contenedor Listar Encuestas -->
@@ -144,7 +166,7 @@
                     </tr>
                     <?php
                    
-                        $query = $pdo->prepare("select p.id as id,p.texto as texto,CONCAT(UPPER(SUBSTRING(t.tipo,1,1)),SUBSTRING(t.tipo,2,LENGTH(t.tipo))) AS tipo from preguntas p inner join tipos_preguntas t on p.id_tipo_pregunta = t.id order by id;");
+                        $query = $pdo->prepare("select p.id as id,p.textos as texto,CONCAT(UPPER(SUBSTRING(t.tipos,1,1)),SUBSTRING(t.tipos,2,LENGTH(t.tipos))) AS tipo from preguntas p inner join tipos_preguntas t on p.id_tipos_preguntas = t.id order by id;");
             
                         $query->execute();                    
                         //appendLog("S", "Query executed successfully - '" . $query . "'");
