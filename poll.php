@@ -109,6 +109,7 @@
                     while($rowProfesores = $queryProfesores->fetch()){
                             array_push($arrayProfesores,$rowProfesores['nombres']);
                     }
+
                     $_SESSION["nombresPreguntas"] = array();
                     $arrayPreguntas = $_SESSION["nombresPreguntas"];
                     $queryPreguntas = $pdo->prepare("select * from preguntas");
@@ -118,11 +119,43 @@
                         array_push($arrayPreguntas,$rowPreguntas['textos']);
                     }
 
+                    $_SESSION["nombresAlumnos"] = array();
+                    $arrayAlumnos = $_SESSION["nombresAlumnos"];
+                    $queryAlumnos = $pdo->prepare("select * from usuarios where role='alumno'");
+                    $queryAlumnos->execute();
+
+                    while($rowAlumnos = $queryAlumnos->fetch()){
+                        array_push($arrayAlumnos,$rowAlumnos['nombres']);
+                    }
+
                     echo "<script>
                     var arrayProfesores = ".json_encode($arrayProfesores).";
                     var arrayPreguntas = ".json_encode($arrayPreguntas).";
+                    var arrayAlumnos = ".json_encode($arrayAlumnos).";
                     </script>";
                 ?>
+
+                <?php 
+                    $userMail = $_SESSION["user"]["email"];
+                    
+                    if(isset($_POST["guardarEncuesta"])){
+                        $tipo = "correcto";
+                        $mensajeCSS = "Has desat correctament l'enquesta";
+                        echo "<script type='text/javascript'>mostrarMensajeCSS('".$tipo."','".$mensajeCSS."')</script>";
+                        array_push($_SESSION["arrayMensajesCSS"],array($tipo,$mensajeCSS));
+                        
+                        $pollName = $_POST["inpNombreEncuesta"];
+                        $pollDateStart = $_POST["inpFechaInicio"];
+                        $pollDateFinal = $_POST["inpFechaFinal"];
+                        
+                        $queryEncuesta = $pdo->prepare("insert into encuestas(textos,fechas_inicio,fechas_final,id_creadores) values('".$pollName."','".$pollDateStart."','".$pollDateFinal."',1);");
+                        $queryEncuesta->execute();
+                        //appendLog("S", "Query executed successfully, question name: (" . $questionName . "), type: ".$questionType ."--".$query);
+                        
+                    }
+                    
+                ?>
+
             </div>
 
             <!-- Contenedor Listar Encuestas -->
@@ -146,9 +179,9 @@
                         while($row = $query->fetch()){
                             echo "<tr>\n
                                 <td class='columnaID'>". $row['id'] ."</td>\n
-                                <td class='columnaNombre'>". $row['texto'] ."</td>\n
-                                <td class='columnaFechaInicio'>". $row['fecha_inicio'] ."</td>\n
-                                <td class='columnaFechaFinal'>". $row['fecha_final'] ."</td>\n
+                                <td class='columnaNombre'>". $row['textos'] ."</td>\n
+                                <td class='columnaFechaInicio'>". $row['fechas_inicio'] ."</td>\n
+                                <td class='columnaFechaFinal'>". $row['fechas_final'] ."</td>\n
                             </tr>";
                         }
                         
