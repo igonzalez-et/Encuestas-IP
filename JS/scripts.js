@@ -217,28 +217,31 @@ function crearFormularioDinamicoEncuesta(){
     crearLabelAndInput("Nom d'enquesta:<br>","text","inpNombreEncuesta","inpNombreEncuesta","#contenedorNombreEncuesta");
 
     crearDiv("#idFormEncuesta","contenedorEleccionFechas");
-    crearLabelAndInput("Data inici:<br>","datetime-local","inpFechaInicio","inpFechaInicio","#contenedorEleccionFechas");
-    crearLabelAndInput("Data final:<br>","datetime-local","inpFechaFinal","inpFechaFinal","#contenedorEleccionFechas");
+    crearDiv("#contenedorEleccionFechas","contenedorEleccionFechasInicio");
+    crearLabelAndInput("Data inici:<br>","datetime-local","inpFechaInicio","inpFechaInicio","#contenedorEleccionFechasInicio");
+    crearDiv("#contenedorEleccionFechas","contenedorEleccionFechasFinal");
+    crearLabelAndInput("Data final:<br>","datetime-local","inpFechaFinal","inpFechaFinal","#contenedorEleccionFechasFinal");
 
     crearDiv("#idFormEncuesta","contenedorProfesores");
     crearParrafoDiv("#contenedorProfesores","parrafoProfesores","Escull els professors per a l'enquesta:");
+    crearInput("text", "nombresProfesores", "nombresProfesores", null, "#contenedorProfesores");
+    $("#nombresProfesores").css("visibility", "hidden");
 
-    crearDiv("#contenedorProfesores","contenedorProfesoresDisponibles");
+    crearDiv("#contenedorProfesores","contenedorEleccionProfesores");
+
+    crearDiv("#contenedorEleccionProfesores","contenedorProfesoresDisponibles");
     crearParrafoDiv("#contenedorProfesoresDisponibles","parrafoProfesores","Professors disponibles:");
     arrayNombreProfesores(arrayProfesores,"button","botonProfesor","#contenedorProfesoresDisponibles");
 
-    crearDiv("#contenedorProfesores","contenedorBotonesProfesores");
+    crearDiv("#contenedorEleccionProfesores","contenedorBotonesProfesores");
     crearBoton("pasarProfesorBoton", "button", "Afegir", "#contenedorBotonesProfesores");
     crearBoton("borrarProfesorBoton", "button", "Borrar", "#contenedorBotonesProfesores");
 
-    crearDiv("#contenedorProfesores","contenedorProfesoresSeleccionados");
+    crearDiv("#contenedorEleccionProfesores","contenedorProfesoresSeleccionados");
     crearParrafoDiv("#contenedorProfesoresSeleccionados","parrafoProfesores","Professors seleccionats:");
-
+    
     funcionesBotonesProfesorEncuestas();
 
-    
-    
-    
 }
 
 function crearDiv(idContenedorPadre,idContenedorNuevo){
@@ -380,6 +383,8 @@ function funcionesBotonesProfesorEncuestas(){
     $(".botonProfesor").click(function(e){
         valueBotonClick = e.target.value;
         idBotonClick = e.target.id;
+        $(".botonProfesor").css("background-color","lightgray");
+        $("#"+idBotonClick).css("background-color","orange");
         
         $("#pasarProfesorBoton").click(function() {
             $("#"+idBotonClick).remove();
@@ -389,17 +394,21 @@ function funcionesBotonesProfesorEncuestas(){
             $(".botonProfesor").click(function(e){
                 valueBotonClick = e.target.value;
                 idBotonClick = e.target.id;
+                $(".botonProfesor").css("background-color","lightgray");
+                $("#"+idBotonClick).css("background-color","orange");
                 
                 $("#pasarProfesorBoton").click(function() {
                     $("#"+idBotonClick).remove();
                     crearBotonProfesoresEncuestas("botonProfesor",idBotonClick,"button",valueBotonClick,"#contenedorProfesoresSeleccionados");
                     toogleDivPreguntasEncuestas();
+                    funcionesBotonesProfesorEncuestas();
                 })
             
                 $("#borrarProfesorBoton").click(function() {
                     $("#"+idBotonClick).remove();
                     crearBotonProfesoresEncuestas("botonProfesor",idBotonClick,"button",valueBotonClick,"#contenedorProfesoresDisponibles");
                     toogleDivPreguntasEncuestas();
+                    funcionesBotonesProfesorEncuestas();
                 })
             });
         })
@@ -412,6 +421,8 @@ function funcionesBotonesProfesorEncuestas(){
             $(".botonProfesor").click(function(e){
                 valueBotonClick = e.target.value;
                 idBotonClick = e.target.id;
+                $(".botonProfesor").css("background-color","lightgray");
+                $("#"+idBotonClick).css("background-color","orange");
                 
                 $("#pasarProfesorBoton").click(function() {
                     $("#"+idBotonClick).remove();
@@ -436,6 +447,8 @@ function funcionesBotonesPreguntaEncuestas(){
     $(".botonPregunta").click(function(e){
         valueBotonClickPregunta = e.target.value;
         idBotonClickPregunta = e.target.id;
+        $(".botonPregunta").css("background-color","lightgray");
+        $("#"+idBotonClickPregunta).css("background-color","orange");
         
         $("#pasarPreguntaBoton").click(function() {
             $("#"+idBotonClickPregunta).remove();
@@ -445,17 +458,21 @@ function funcionesBotonesPreguntaEncuestas(){
             $(".botonPregunta").click(function(e){
                 valueBotonClickPregunta = e.target.value;
                 idBotonClickPregunta = e.target.id;
+                $(".botonPregunta").css("background-color","lightgray");
+                $("#"+idBotonClickPregunta).css("background-color","orange");
                 
                 $("#pasarPreguntaBoton").click(function() {
                     $("#"+idBotonClickPregunta).remove();
                     crearBotonProfesoresEncuestas("botonPregunta",idBotonClickPregunta,"button",valueBotonClickPregunta,"#contenedorPreguntasSeleccionadas");
                     toogleDivAlumnosEncuestas();
+                    funcionesBotonesPreguntaEncuestas();
                 })
             
                 $("#borrarPreguntaBoton").click(function() {
                     $("#"+idBotonClickPregunta).remove();
                     crearBotonProfesoresEncuestas("botonPregunta",idBotonClickPregunta,"button",valueBotonClickPregunta,"#contenedorPreguntasDisponibles");
                     toogleDivAlumnosEncuestas();
+                    funcionesBotonesPreguntaEncuestas();
                 })
             });
         })
@@ -468,6 +485,8 @@ function funcionesBotonesPreguntaEncuestas(){
             $(".botonPregunta").click(function(e){
                 valueBotonClickPregunta = e.target.value;
                 idBotonClickPregunta = e.target.id;
+                $(".botonPregunta").css("background-color","lightgray");
+                $("#"+idBotonClickPregunta).css("background-color","orange");
                 
                 $("#pasarPreguntaBoton").click(function() {
                     $("#"+idBotonClickPregunta).remove();
@@ -544,11 +563,28 @@ function funcionesBotonesAlumnoEncuestas(){
 
 
 function toogleDivPreguntasEncuestas(){
-    if($("#contenedorProfesoresSeleccionados button").length > 0){
-        if(!$("#contenedorEleccionPreguntas").length){
-            crearDiv("#idFormEncuesta","contenedorEleccionPreguntas");
-            crearParrafoDiv("#contenedorEleccionPreguntas","parrafoPreguntas","Escull les preguntes per a l'enquesta:");
 
+    if($("#contenedorProfesoresSeleccionados button").length > 0){
+        var cadenaNombresProfesores = "";
+        for (let i = 0; i < $("#contenedorProfesoresSeleccionados button").length; i++) {
+            
+            if(i == 0){
+                cadenaNombresProfesores += $("#contenedorProfesoresSeleccionados button")[i].value;
+                $("#nombresProfesores").val(cadenaNombresProfesores);
+            }
+            else {
+                cadenaNombresProfesores += "," + $("#contenedorProfesoresSeleccionados button")[i].value;
+                $("#nombresProfesores").val(cadenaNombresProfesores);
+            }
+        }
+        
+        if(!$("#contenedorEleccionPreguntas").length){
+            crearDiv("#idFormEncuesta","contenedorPreguntas");
+            crearParrafoDiv("#contenedorPreguntas","parrafoPreguntas","Escull les preguntes per a l'enquesta:");
+            crearInput("text", "nombresPreguntas", "nombresPreguntas", null, "#contenedorPreguntas");
+            $("#nombresPreguntas").css("visibility", "hidden");
+
+            crearDiv("#contenedorPreguntas","contenedorEleccionPreguntas");
             crearDiv("#contenedorEleccionPreguntas","contenedorPreguntasDisponibles");
             crearParrafoDiv("#contenedorPreguntasDisponibles","parrafoPreguntas","Preguntes disponibles:");
             arrayNombreProfesores(arrayPreguntas,"button","botonPregunta","#contenedorPreguntasDisponibles");
@@ -564,15 +600,35 @@ function toogleDivPreguntasEncuestas(){
         }
     }
     else{
+        cadenaNombresProfesores = null;
+        $("#nombresProfesores").val(cadenaNombresProfesores);
         $("#contenedorEleccionPreguntas").remove();
+        $("#contenedorEleccionAlumnos").remove();
+        $("#contenedorBotonesFinalesEncuesta").remove();
+        
     }
 }
 
 function toogleDivAlumnosEncuestas(){
     if($("#contenedorPreguntasSeleccionadas button").length > 0){
+        var cadenaNombresPreguntas = "";
+        for (let i = 0; i < $("#contenedorPreguntasSeleccionadas button").length; i++) {
+            
+            if(i == 0){
+                cadenaNombresPreguntas += $("#contenedorPreguntasSeleccionadas button")[i].value;
+                $("#nombresPreguntas").val(cadenaNombresPreguntas);
+            }
+            else {
+                cadenaNombresPreguntas += "," + $("#contenedorPreguntasSeleccionadas button")[i].value;
+                $("#nombresPreguntas").val(cadenaNombresPreguntas);
+            }
+        }
+
         if(!$("#contenedorEleccionAlumnos").length){
             crearDiv("#idFormEncuesta","contenedorEleccionAlumnos");
             crearParrafoDiv("#contenedorEleccionAlumnos","parrafoAlumnos","Escull els alumnes per a l'enquesta:");
+            crearInput("text", "nombresAlumnos", "nombresAlumnos", null, "#contenedorEleccionAlumnos");
+            $("#nombresAlumnos").css("visibility", "hidden");
 
             crearDiv("#contenedorEleccionAlumnos","contenedorAlumnosDisponibles");
             crearParrafoDiv("#contenedorAlumnosDisponibles","parrafoAlumnos","Alumnes disponibles:");
@@ -589,12 +645,28 @@ function toogleDivAlumnosEncuestas(){
         }
     }
     else{
+        cadenaNombresPreguntas = null;
+        $("#nombresProfesores").val(cadenaNombresPreguntas);
         $("#contenedorEleccionAlumnos").remove();
+        $("#contenedorBotonesFinalesEncuesta").remove();
     }
 }
 
 function toogleBotonesFinalesFormulario(){
     if($("#contenedorAlumnosSeleccionados button").length > 0){
+        var cadenaNombresAlumnos = "";
+        for (let i = 0; i < $("#contenedorAlumnosSeleccionados button").length; i++) {
+            
+            if(i == 0){
+                cadenaNombresAlumnos += $("#contenedorAlumnosSeleccionados button")[i].value;
+                $("#nombresAlumnos").val(cadenaNombresAlumnos);
+            }
+            else {
+                cadenaNombresAlumnos += "," + $("#contenedorAlumnosSeleccionados button")[i].value;
+                $("#nombresAlumnos").val(cadenaNombresAlumnos);
+            }
+        }
+
         if(!$("#contenedorBotonesFinalesEncuesta").length){
             crearDiv("#idFormEncuesta","contenedorBotonesFinalesEncuesta");
             crearInput("submit","guardarEncuesta","guardarEncuesta","Guardar","#contenedorBotonesFinalesEncuesta");
@@ -606,6 +678,8 @@ function toogleBotonesFinalesFormulario(){
         }
     }
     else{
+        cadenaNombresAlumnos = null;
+        $("#nombresAlumnos").val(cadenaNombresAlumnos);
         $("#contenedorBotonesFinalesEncuesta").remove();
     }
 

@@ -89,7 +89,7 @@
                         
                         $questionName = $_POST["inpNombrePregunta"];
                         $questionType = strtolower($_POST["tipoPregunta"]);
-                        $query = $pdo->prepare("insert into preguntas(textos,id_tipos_preguntas) select '".$questionName."' as texto, id as id_tipo_pregunta from tipos_preguntas where tipos = '".$questionType."';");
+                        $query = $pdo->prepare("insert into preguntas(textos,id_tipos_preguntas) select '".$questionName."' as texto, id as id_tipos_preguntas from tipos_preguntas where tipos = '".$questionType."';");
                         $query->execute();
                         //appendLog("S", "Query executed successfully, question name: (" . $questionName . "), type: ".$questionType ."--".$query);
                         
@@ -137,7 +137,7 @@
 
                 <?php 
                     $userMail = $_SESSION["user"]["email"];
-                    
+
                     if(isset($_POST["guardarEncuesta"])){
                         $tipo = "correcto";
                         $mensajeCSS = "Has desat correctament l'enquesta";
@@ -147,9 +147,37 @@
                         $pollName = $_POST["inpNombreEncuesta"];
                         $pollDateStart = $_POST["inpFechaInicio"];
                         $pollDateFinal = $_POST["inpFechaFinal"];
-                        
+                        $pollNameProfessors = $_POST["nombresProfesores"];
+                        $pollNameQuestions = $_POST["nombresPreguntas"];
+                        $pollNameStudents = $_POST["nombresAlumnos"];
+
+                        $delimitador = ",";
+                        $arrayProfesoresSeleccionados = explode($delimitador,$pollNameProfessors);
+                        $arrayPreguntasSeleccionadas = explode($delimitador,$pollNameQuestions);
+                        $arrayAlumnosSeleccionados = explode($delimitador,$pollNameStudents);
+
                         $queryEncuesta = $pdo->prepare("insert into encuestas(textos,fechas_inicio,fechas_final,id_creadores) values('".$pollName."','".$pollDateStart."','".$pollDateFinal."',1);");
                         $queryEncuesta->execute();
+
+                        // Query para Encuestas - Preguntas
+                        for ($i=0; $i < count($arrayPreguntasSeleccionadas); $i++) { 
+                            $queryEncuesta2 = $pdo->prepare("insert into encuestas_tiene_preguntas(id_encuestas, id_preguntas) select e.id as id_encuestas, p.id as id_preguntas from encuestas e inner join preguntas p where e.textos = '".$pollName."' and p.textos = '".$arrayPreguntasSeleccionadas[$i]."';");
+                            $queryEncuesta2->execute();
+                        }
+
+                        // Query para Encuestas - Profesores
+                        for ($i=0; $i < count($arrayProfesoresSeleccionados); $i++) { 
+                            $queryEncuesta3 = $pdo->prepare("insert into encuestas_tiene_profesores(id_encuestas, id_usuarios) select e.id as id_encuestas, u.id as id_usuarios from encuestas e inner join usuarios u where e.textos = '".$pollName."' and u.nombres = '".$arrayProfesoresSeleccionados[$i]."';");
+                            $queryEncuesta3->execute();
+                        }
+
+                        // Query para Encuestas - Alumnos
+                        for ($i=0; $i < count($arrayAlumnosSeleccionados); $i++) { 
+                            $queryEncuesta4 = $pdo->prepare("insert into invitaciones_alumnos(id_encuestas, id_alumnos) select e.id as id_encuestas, u.id as id_alumnos from encuestas e inner join usuarios u where e.textos = '".$pollName."' and u.nombres = '".$arrayAlumnosSeleccionados[$i]."';");
+                            $queryEncuesta4->execute();
+                        }
+
+
                         //appendLog("S", "Query executed successfully, question name: (" . $questionName . "), type: ".$questionType ."--".$query);
                         
                     }
