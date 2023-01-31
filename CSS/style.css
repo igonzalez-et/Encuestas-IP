@@ -294,6 +294,11 @@ body {
     background-color: #636363;
     color: whitesmoke;
     width: 100%;
+    border-spacing: 10px;
+}
+
+#contenedorListaPreguntas table tr:nth-child(odd){
+    background-color: rgba(255,255,255,0.3);
 }
 
 #contenedorListaPreguntas table th{
@@ -317,7 +322,6 @@ body {
 
 #idFormEncuesta div{
     width: 90%;
-    background-color: lightgray;
     margin: auto;
     margin-bottom: 1%;
     border-radius: 10px;
@@ -439,6 +443,79 @@ body {
 #contenedorPreguntas #contenedorPreguntasSeleccionadas {
     margin-top: -50px;
     width: 40%;
+}
+
+/* Contenedor Alumnos - Encuestas */
+
+#contenedorAlumnos {
+    background-color: #2196f3;
+}
+
+#contenedorAlumnos p{
+    font-weight: bold;
+}
+
+#contenedorEleccionAlumnos {
+    display: flex;
+    justify-content: space-around;
+}
+
+#contenedorEleccionAlumnos button {
+    background-color: lightgray;
+    font-size: 15px;
+    min-width: 100%;
+    border: 0;
+    margin-bottom: 5px;
+}
+
+#contenedorAlumnos #contenedorAlumnosDisponibles {
+    margin-top: -50px;
+    width: 40%;
+}
+
+#contenedorAlumnos #contenedorBotonesAlumnos {
+    margin-top: 20px;
+    width: 20%;
+}
+
+#contenedorAlumnos #contenedorAlumnosSeleccionados {
+    margin-top: -50px;
+    width: 40%;
+}
+
+/* Botones Guardar y Borrar - Encuesta */
+
+#guardarEncuesta{
+    background-color: lightgray;
+    color: black;
+    padding: 14px 10px;
+    margin-left: 1%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid black;
+    margin-top: 5%;
+}
+#guardarEncuesta:hover{
+    transform: scale(1.1);
+    background-color: rgb(0, 163, 3);
+}
+
+#borrarEncuesta{
+    background-color: lightgray;
+    color: black;
+    padding: 14px 10px;
+    margin-left: 1%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid black;
+    margin-top: 5%;
+}
+#borrarEncuesta:hover{
+    transform: scale(1.1);
+    color: white;
+    background-color: #636363;
 }
 
 /* Contenedor Crear Pregunta */
@@ -667,6 +744,12 @@ body {
 }
 .columnaTipo{
     width: 20%;
+}
+.columnasFuncionalidades{
+    text-align: center;
+}
+#thFuncionalidades {
+    text-align: center;
 }
 
 

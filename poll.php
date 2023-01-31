@@ -23,7 +23,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./CSS/style.css" type="text/css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src='./JS/scripts.js'></script>
     <title>Enquestes</title>
@@ -89,8 +91,9 @@
                         
                         $questionName = $_POST["inpNombrePregunta"];
                         $questionType = strtolower($_POST["tipoPregunta"]);
-                        $query = $pdo->prepare("insert into preguntas(textos,id_tipos_preguntas) select '".$questionName."' as texto, id as id_tipos_preguntas from tipos_preguntas where tipos = '".$questionType."';");
+                        $query = $pdo->prepare("insert into preguntas(textos,pregunta_activa,id_tipos_preguntas) select '".$questionName."' as texto, 'Si' as pregunta_activa, id as id_tipos_preguntas from tipos_preguntas where tipos = '".$questionType."';");
                         $query->execute();
+
                         //appendLog("S", "Query executed successfully, question name: (" . $questionName . "), type: ".$questionType ."--".$query);
                         
                     }
@@ -156,7 +159,7 @@
                         $arrayPreguntasSeleccionadas = explode($delimitador,$pollNameQuestions);
                         $arrayAlumnosSeleccionados = explode($delimitador,$pollNameStudents);
 
-                        $queryEncuesta = $pdo->prepare("insert into encuestas(textos,fechas_inicio,fechas_final,id_creadores) values('".$pollName."','".$pollDateStart."','".$pollDateFinal."',1);");
+                        $queryEncuesta = $pdo->prepare("insert into encuestas(textos,fechas_inicio,fechas_final,id_creadores,encuesta_activa) values('".$pollName."','".$pollDateStart."','".$pollDateFinal."',".$_SESSION["user"]["id"].",'Si');");
                         $queryEncuesta->execute();
 
                         // Query para Encuestas - Preguntas
@@ -194,10 +197,11 @@
                         <th>Nom</th>
                         <th class="columnaFechaInicio">Data Inici</th>
                         <th class="columnaFechaFinal">Data Final</th>
+                        <th id="thFuncionalidades" colspan="2">Funcionalidades</th>
                     </tr>
                     <?php
                     
-                        $query = $pdo->prepare("select * from encuestas");
+                        $query = $pdo->prepare("select * from encuestas where encuesta_activa='Si'");
             
                         $query->execute();
                        
@@ -210,6 +214,8 @@
                                 <td class='columnaNombre'>". $row['textos'] ."</td>\n
                                 <td class='columnaFechaInicio'>". $row['fechas_inicio'] ."</td>\n
                                 <td class='columnaFechaFinal'>". $row['fechas_final'] ."</td>\n
+                                <td class='columnasFuncionalidades'><button class='editarFilaLista' id='".$row['id']."'><i class='fa fa-pencil' aria-hidden='true'></i></button></td>\n
+                                <td class='columnasFuncionalidades'><button class='borrarFilaLista' id='".$row['id']."'><i class='fa fa-trash' aria-hidden='true'></i></button></td>\n
                             </tr>";
                         }
                         
@@ -224,22 +230,23 @@
                         <th>ID</th>
                         <th>Nom</th>
                         <th>Tipus Pregunta</th>
+                        <th id="thFuncionalidades" colspan="2">Funcionalidades</th>
                     </tr>
                     <?php
                    
-                        $query = $pdo->prepare("select p.id as id,p.textos as texto,CONCAT(UPPER(SUBSTRING(t.tipos,1,1)),SUBSTRING(t.tipos,2,LENGTH(t.tipos))) AS tipo from preguntas p inner join tipos_preguntas t on p.id_tipos_preguntas = t.id order by id;");
+                        $query = $pdo->prepare("select p.id as id,p.textos as texto,CONCAT(UPPER(SUBSTRING(t.tipos,1,1)),SUBSTRING(t.tipos,2,LENGTH(t.tipos))) AS tipo from preguntas p inner join tipos_preguntas t on p.id_tipos_preguntas = t.id where p.pregunta_activa='Si' order by id;");
             
                         $query->execute();                    
                         //appendLog("S", "Query executed successfully - '" . $query . "'");
                    
                     
-                        
-
                         while($row = $query->fetch()){
                             echo "<tr>\n
                                 <td class='columnaID'>". $row['id'] ."</td>\n
                                 <td class='columnaNombre'>". $row['texto'] ."</td>\n
                                 <td class='columnaTipo'>". $row['tipo'] ."</td>\n
+                                <td class='columnasFuncionalidades'><button class='editarFilaLista' id='".$row['id']."'><i class='fa fa-pencil' aria-hidden='true'></i></button></td>\n
+                                <td class='columnasFuncionalidades'><button class='borrarFilaLista' id='".$row['id']."'><i class='fa fa-trash' aria-hidden='true'></i></button></td>\n
                             </tr>";
                         }
                     ?>
