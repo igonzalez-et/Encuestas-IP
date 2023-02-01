@@ -23,6 +23,23 @@
         </div>
         
     </div>
+
+    <div class="container">
+        <span class="dondestas animation"></span>
+        <div class="center ">
+            <div class="wrap">
+                <div class="box-1 box">
+                    <img src="./img/form_icon.png" class="fas fa-file-code">
+                    <img src="./img/form_icon.png" class="fas fa-file-code">
+                </div>
+                <div class="box-2 box">
+                    <img src="./img/form_icon.png" class="fas fa-file-code">
+                    <img src="./img/form_icon.png"class="fas fa-file-code">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <?php include("./includes/footer.php")?>
 </body>
 </html>
