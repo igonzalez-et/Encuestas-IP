@@ -255,7 +255,8 @@
         </div>
         
     </div>
-    <?php include("./includes/footer.php")?>
+    <?php include("./includes/footer.php")
+    //hola?>
     <script src="./JS/scripts.js"></script>
 </body>
 </html>
