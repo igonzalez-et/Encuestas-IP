@@ -10,3 +10,4 @@
 [S] - [22:29:22] - [Successful connection to the database]
 [S] - [22:30:21] - [User  has successfully logout]
 [S] - [22:30:21] - [Successful connection to the database]
+[E] - [21:48:40] - [Failed to get DB handle: could not find driver]
