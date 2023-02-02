@@ -1,7 +1,7 @@
 <?php
     session_start();
     include ("./includes/log.php");
-
+    include ("./includes/deleteEncuestas.php");
 
     try {
         $hostname = "localhost";
@@ -197,28 +197,32 @@
                         <th>Nom</th>
                         <th class="columnaFechaInicio">Data Inici</th>
                         <th class="columnaFechaFinal">Data Final</th>
-                        <th id="thFuncionalidades" colspan="2">Funcionalidades</th>
+                        <!-- <th id="thFuncionalidades" colspan="2">Funcionalidades</th> -->
                     </tr>
                     <?php
                     
-                        $query = $pdo->prepare("select * from encuestas where encuesta_activa='Si'");
+                        $query = $pdo->prepare("SELECT * from encuestas where encuesta_activa='Si'");
             
                         $query->execute();
+
                        
-                   
+                        
+                    
                         
 
                         while($row = $query->fetch()){
+                             $valor_id = $row['id'];
+                             $sql = ("DELETE FROM encuestas WHERE id = $valor_id");
                             echo "<tr>\n
                                 <td class='columnaID'>". $row['id'] ."</td>\n
                                 <td class='columnaNombre'>". $row['textos'] ."</td>\n
                                 <td class='columnaFechaInicio'>". $row['fechas_inicio'] ."</td>\n
                                 <td class='columnaFechaFinal'>". $row['fechas_final'] ."</td>\n
-                                <td class='columnasFuncionalidades'><button class='editarFilaLista' id='".$row['id']."'><i class='fa fa-pencil' aria-hidden='true'></i></button></td>\n
-                                <td class='columnasFuncionalidades'><button class='borrarFilaLista' id='".$row['id']."'><i class='fa fa-trash' aria-hidden='true'></i></button></td>\n
+                                
                             </tr>";
                         }
-                        
+                        // <td class='columnasFuncionalidades'><button class='editarFilaLista' id='".$row['id']."'><i class='fa fa-pencil' aria-hidden='true'></i></button></td>\n
+                        //         <td class='columnasFuncionalidades'><button class='borrarFilaLista' name='".$row['id']."' id='".$row['id']."'><i class='fa fa-trash' aria-hidden='true'></i></button></td>\n
                     ?>
                 </table>
             </div>

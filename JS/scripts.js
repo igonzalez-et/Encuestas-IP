@@ -1,3 +1,6 @@
+
+
+
 function cerrarMensajeCSS(){
     var close = document.getElementsByClassName("closebtn");
     var i;
