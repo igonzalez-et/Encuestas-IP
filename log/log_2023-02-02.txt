@@ -54,3 +54,5 @@
 [S] - [12:40:11] - [Successful connection to the database]
 [S] - [12:40:37] - [Successful connection to the database]
 [S] - [12:40:53] - [Successful connection to the database]
+[S] - [12:49:10] -  - [Successful connection to the database]
+[S] - [12:50:13] - 127.0.0.1 - [Successful connection to the database]
